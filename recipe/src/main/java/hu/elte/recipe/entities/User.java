@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import groovy.transform.EqualsAndHashCode;
 import org.apache.commons.lang3.ObjectUtils;
+import hu.elte.recipe.entities.httpentities.IngredientHttpEntity;
+import hu.elte.recipe.entities.httpentities.UserHttpEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -116,5 +118,17 @@ public class User {
         }
     }
 
+    @JsonProperty("ingredients")
+    public List<IngredientHttpEntity> ingredients(){
+        if(ingredients != null){
+            return ingredients.stream().map(IngredientHttpEntity::new).collect(Collectors.toList());
+        }
+        return Collections.emptyList();
+    }
+
+    public User(UserHttpEntity entity) {
+        this.username = entity.getUsername();
+        this.password = entity.getPassword();
+    }
   
 }

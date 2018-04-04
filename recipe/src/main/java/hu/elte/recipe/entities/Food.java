@@ -3,6 +3,7 @@ package hu.elte.recipe.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import groovy.transform.EqualsAndHashCode;
+import hu.elte.recipe.entities.httpentities.IngredientHttpEntity;
 
 import javax.persistence.*;
 import java.util.Collections;
@@ -64,6 +65,14 @@ public class Food {
 
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    @JsonProperty("ingredients")
+    public List<IngredientHttpEntity> ingredients(){
+        if(ingredients != null){
+            return ingredients.stream().map(IngredientHttpEntity::new).collect(Collectors.toList());
+        }
+        return Collections.emptyList();
     }
 
 }
