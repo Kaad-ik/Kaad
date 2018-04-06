@@ -1,7 +1,5 @@
 package hu.elte.recipe.entities;
 
-import groovy.transform.EqualsAndHashCode;
-
 import javax.persistence.*;
 import java.util.Objects;
 

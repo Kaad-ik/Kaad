@@ -1,0 +1,70 @@
+h3,
+h4,
+h5 {
+    margin: 15px;
+}
+
+h3,
+h4,
+h5,
+#login-button {
+    background-color: green;
+    color: white;
+}
+
+.form-style {
+    background-color: white;
+    border: none;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border: 1px solid green;
+}
+
+#login-main-header h1 {
+    font-size: 56px;
+    margin-bottom: 5px;
+}
+
+#login-main-header {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5%;
+}
+
+#login-header {
+    padding: 4% 0 2% 0;
+    margin-left: 12%;
+}
+
+#login-form {
+    padding: 2% 5% 10% 5%;
+}
+
+#login-form input {
+    margin: 4% 0 4% 0;
+}
+
+#login {
+    background-color: green;
+    border-radius: 8px;
+    border: 1px solid green;
+    padding: 0px;
+    margin: auto;
+    width: 96%;
+}
+
+#login {
+    width: 30%;
+    margin-left: 12%;
+}
+
+.blue-text {
+    color: green;
+}
+
+@media screen and (max-width: 800px) {
+    #login {
+        width: 80%;
+    }
+}

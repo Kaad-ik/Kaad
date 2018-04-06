@@ -1,14 +1,11 @@
 package hu.elte.recipe.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import groovy.transform.EqualsAndHashCode;
 
 import javax.persistence.*;
 
 @Entity
-@EqualsAndHashCode(callSuper = true)
 @Table(name = "ingredients")
 public class Ingredient {
 

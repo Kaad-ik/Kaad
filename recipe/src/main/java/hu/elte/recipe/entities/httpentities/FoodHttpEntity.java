@@ -1,12 +1,10 @@
 package hu.elte.recipe.entities.httpentities;
 
-import groovy.transform.EqualsAndHashCode;
 import hu.elte.recipe.entities.Food;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@EqualsAndHashCode(callSuper = true)
 public class FoodHttpEntity {
     private String name;
     private Set<IngredientHttpEntity> ingredients;

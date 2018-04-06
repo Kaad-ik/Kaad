@@ -1,9 +1,7 @@
 package hu.elte.recipe.entities.httpentities;
 
-import groovy.transform.EqualsAndHashCode;
 import hu.elte.recipe.entities.Ingredient;
 
-@EqualsAndHashCode(callSuper = true)
 public class IngredientHttpEntity {
     private String type;
     private int quantity;

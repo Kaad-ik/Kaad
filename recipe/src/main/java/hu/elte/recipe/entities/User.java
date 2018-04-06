@@ -2,7 +2,6 @@ package hu.elte.recipe.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import groovy.transform.EqualsAndHashCode;
 import org.apache.commons.lang3.ObjectUtils;
 import hu.elte.recipe.entities.httpentities.IngredientHttpEntity;
 import hu.elte.recipe.entities.httpentities.UserHttpEntity;
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
-@EqualsAndHashCode(callSuper = true)
 @Table(name = "users")
 public class User {
 
