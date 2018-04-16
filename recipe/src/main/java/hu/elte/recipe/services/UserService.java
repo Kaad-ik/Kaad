@@ -22,14 +22,11 @@ public class UserService {
 
     private static final String USERNAME_DUPLICATED_MESSAGE = "The user with that username is already exist.";
 
-    private UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
 	private User actualUser;
 
-	@Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+	public UserService() {}
 
     public Iterable<User> getAllUser(){
         return userRepository.findAll();
@@ -41,7 +38,7 @@ public class UserService {
 
     public User updateUser(Long id, User user){
         User current = userRepository.findOne(id);
-        current.setUsername(user.getUsername());
+        current.setUserName(user.getUserName());
         current.setMoney(user.getMoney());
         current.setIngredients(user.getIngredients());
         current.setPassword(user.getPassword());
@@ -54,7 +51,7 @@ public class UserService {
     }
 
     public User updateUser(User user){
-        actualUser.setUsername(user.getUsername());
+        actualUser.setUserName(user.getUserName());
         actualUser.setMoney(user.getMoney());
         actualUser.setIngredients(user.getIngredients());
         actualUser.setPassword(user.getPassword());
@@ -78,7 +75,7 @@ public class UserService {
 
     public User login(User user) throws UserNotValidException {
         if (isValid(user)) {
-            return this.actualUser = userRepository.findByUsername(user.getUsername()).get();
+            return this.actualUser = userRepository.findByUserName(user.getUserName()).get();
         }
         throw new UserNotValidException();
     }
@@ -96,7 +93,7 @@ public class UserService {
     }
 
     private boolean isValid(User user) {
-        return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword()).isPresent();
+        return userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword()).isPresent();
     }
 
 	public boolean logout() {

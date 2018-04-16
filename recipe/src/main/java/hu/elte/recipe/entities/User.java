@@ -22,7 +22,13 @@ public class User {
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String username;
+    private String userName;
+    
+    @Column(nullable = false)
+    private String fullName;
+    
+    @Column(nullable = false)
+    private String email;
 
     @Column(nullable = false)
     private String password;
@@ -33,6 +39,9 @@ public class User {
 
     @Column(nullable = false)
     private Integer money;
+    
+    @Column(nullable = false)
+    private Currency currency;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Food.class)
@@ -55,8 +64,7 @@ public class User {
         }
     }
 
-    public User() {
-    }
+    public User() {}
 
     public Long getId() {
         return id;
@@ -66,15 +74,31 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getPassword() {
+    public String getFullName() {
+		return fullName;
+	}
+    
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getPassword() {
         return password;
     }
 
@@ -98,10 +122,17 @@ public class User {
         this.money = money;
     }
 
-    public List<Ingredient> getIngredients() {
+    public Currency getCurrency() {
+		return currency;
+	}
+    
+	public void setCurrency(Currency currency) {
+		this.currency = currency;
+	}
+	
+	public List<Ingredient> getIngredients() {
         return ingredients;
     }
-
 
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
@@ -125,7 +156,7 @@ public class User {
     }
 
     public User(UserHttpEntity entity) {
-        this.username = entity.getUsername();
+        this.userName = entity.getUserName();
         this.password = entity.getPassword();
     }
   
