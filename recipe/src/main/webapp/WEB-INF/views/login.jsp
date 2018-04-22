@@ -31,10 +31,10 @@
         </header>
         <section id="login" class="container">
             <h3>Login</h3>
-            <form id="login-form" class="form-style">
-                <label class="sr-only" for="email">Email</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="Email" required="required">
-                <label class="sr-only" for="password">Password</label>
+            <form id="login-form" class="form-style" action="login" method="POST">
+                <label class="sr-only" for="userName">Username ${person.userName}</label>
+                <input type="text" name="userName" id="userName" class="form-control" placeholder="User name" required="required">
+                <label class="sr-only" for="password">Password ${person.password}</label>
                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="required">
                 <button class="btn btn-default" id="login-button">Login</button>
             </form>

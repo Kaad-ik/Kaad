@@ -2,7 +2,6 @@ package hu.elte.recipe.rest;
 
 import java.util.Arrays;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +23,7 @@ public class UserDetailsController {
 		return new CurrencyModel(Arrays.asList(Currency.values()));
 	}
 	
-	@RequestMapping(value = "/details.html", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView showUserDetails(Model model) {
 		User user = getUser();
 		model.addAttribute("user", user);
