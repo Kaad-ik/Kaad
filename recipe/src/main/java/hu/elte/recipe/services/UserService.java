@@ -112,6 +112,7 @@ public class UserService {
 		return actualUser;
 	}
 	
+   
 	void cook(Food food) {
        for(Ingredient ingredient : actualUser.getIngredients()){
            if(food.getIngredients().stream().anyMatch(i -> i.getType().equals(ingredient.getType()))){
@@ -122,7 +123,7 @@ public class UserService {
            }
        }
        updateUser(getActualUser());
-    }
+    } 
 
     public User add(User user) {
         try{

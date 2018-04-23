@@ -11,13 +11,13 @@ import hu.elte.recipe.repositories.UserRepository;
 
 /*
 import hu.elte.recipe.entities.Food;
-import hu.elte.recipe.repositories.FoodRepository;
+import hu.elte.recipe.repositories.FoodRepository; */
+
+import hu.elte.recipe.entities.Ingredient;
+import hu.elte.recipe.repositories.IngredientRepository; 
 
 import hu.elte.recipe.entities.IngredientType;
 import hu.elte.recipe.repositories.IngredientTypeRepository;
-
-import hu.elte.recipe.entities.Ingredient;
-import hu.elte.recipe.repositories.IngredientRepository; */
 
 @Service
 @Transactional
@@ -25,18 +25,21 @@ public class PopulateDatabaseService {
 	
 	@Autowired private UserRepository userRepository;
 	//@Autowired private FoodRepository foodRepository;
-	//@Autowired private IngredientTypeRepository ingredientTypeRepository;
-	//@Autowired private IngredientRepository ingredientRepository;
+	@Autowired private IngredientTypeRepository ingredientTypeRepository;
+	@Autowired private IngredientRepository ingredientRepository;
+
+	private User user = new User();
+	private IngredientType iT = new IngredientType();
 	
 	public void populateDatabase() {
 		savePlayer();
 		//saveFood();
-		//saveType();
-		//saveIngredient();
+		saveType();
+		saveIngredient();
 	}
 
 	private void savePlayer() {
-		User user = new User();
+		//User user = new User();
 		user.setUserName("admin");
 		user.setPassword("admin");
 		user.setEmail("admin@admin.hu");
@@ -136,7 +139,7 @@ public class PopulateDatabaseService {
 		user9.setRole(Role.GUEST);
 		userRepository.save(user9);
 	}
-/*
+	/*
 	private void saveFood(){
 		Food food = new Food();
 		food.setName("Gulyásleves");
@@ -174,47 +177,175 @@ public class PopulateDatabaseService {
 		food5.setImgurl("http://www.nosalty.hu/files/imagecache/recept/recept_kepek/187932_178284_bolognai1.jpg");
 		foodRepository.save(food5);
 
-	} 
+	}  */
 
 	private void saveType(){
-		IngredientType iT = new IngredientType();
-		iT.setPricePergrams(100);
-		iT.setTypename("Tejtermék");
-		iT.setImgUrl("http://www.netamin.hu/uploads/2014/05/tejtermekek.jpg");
+		//IngredientType iT = new IngredientType();
+		iT.setPricePergrams(200);
+		iT.setTypename("marhalábszár");
 		ingredientTypeRepository.save(iT);
 
 		IngredientType iT1 = new IngredientType();
-		iT1.setPricePergrams(130);
-		iT1.setTypename("Fűszerek");
-		iT1.setImgUrl("http://vir.matusz-vad.hu:2280/webaruhazteszt/images/desc/DESC4224.jpg");
+		iT1.setPricePergrams(30);
+		iT1.setTypename("vöröshagyma");
 		ingredientTypeRepository.save(iT1);
 
 		IngredientType iT3 = new IngredientType();
 		iT3.setPricePergrams(90);
-		iT3.setTypename("Zöldségek");
-		iT3.setImgUrl("https://cleaneating.hu/wp-content/uploads/2017/02/zoldsegek-es-gyumolcsok-szezonja.jpg");
+		iT3.setTypename("disznózsír");
 		ingredientTypeRepository.save(iT3);
 
 		IngredientType iT4 = new IngredientType();
 		iT4.setPricePergrams(200);
-		iT4.setTypename("Hús");
-		iT4.setImgUrl("https://www.dehir.hu/upload/images/wp_cikkek/2013/husok.jpg");
+		iT4.setTypename("fűszerpaprika");
 		ingredientTypeRepository.save(iT4);
 
 		IngredientType iT5 = new IngredientType();
 		iT5.setPricePergrams(85);
-		iT5.setTypename("Tészta");
-		iT5.setImgUrl("https://nlc.p3k.hu/uploads/2017/09/teszta.jpg");
+		iT5.setTypename("paradicsom");
 		ingredientTypeRepository.save(iT5);
 
 		IngredientType iT6 = new IngredientType();
 		iT6.setPricePergrams(50);
-		iT6.setTypename("Egyéb");
-		iT6.setImgUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSul1-SR7unqeiEoEeTVZIw8asHKOXH1JjScDMlNL9Abl1sroKPtQ");
+		iT6.setTypename("erős paprika");
 		ingredientTypeRepository.save(iT6);
-	}
 
+		IngredientType iT7 = new IngredientType();
+		iT7.setPricePergrams(30);
+		iT7.setTypename("csípős paprikakrém");
+		ingredientTypeRepository.save(iT7);
+
+		IngredientType iT8 = new IngredientType();
+		iT8.setPricePergrams(90);
+		iT8.setTypename("só");
+		ingredientTypeRepository.save(iT8);
+
+		IngredientType iT9 = new IngredientType();
+		iT9.setPricePergrams(200);
+		iT9.setTypename("sárgarépa");
+		ingredientTypeRepository.save(iT9);
+
+		IngredientType iT10 = new IngredientType();
+		iT10.setPricePergrams(85);
+		iT10.setTypename("fehérrépa");
+		ingredientTypeRepository.save(iT10);
+
+		IngredientType iT11 = new IngredientType();
+		iT11.setPricePergrams(50);
+		iT11.setTypename("burgonya");
+		ingredientTypeRepository.save(iT11);
+
+		IngredientType iT12 = new IngredientType();
+		iT12.setPricePergrams(30);
+		iT12.setTypename("víz");
+		ingredientTypeRepository.save(iT12);
+
+		IngredientType iT13 = new IngredientType();
+		iT13.setPricePergrams(90);
+		iT13.setTypename("tojás");
+		ingredientTypeRepository.save(iT13);
+
+		IngredientType iT14 = new IngredientType();
+		iT14.setPricePergrams(200);
+		iT14.setTypename("finomliszt");
+		ingredientTypeRepository.save(iT14);
+
+		IngredientType iT15 = new IngredientType();
+		iT15.setPricePergrams(85);
+		iT15.setTypename("darált sertéshús");
+		ingredientTypeRepository.save(iT15);
+
+		IngredientType iT16 = new IngredientType();
+		iT16.setPricePergrams(50);
+		iT16.setTypename("olaj");
+		ingredientTypeRepository.save(iT16);
+
+		IngredientType iT17 = new IngredientType();
+		iT17.setPricePergrams(200);
+		iT17.setTypename("passzírozott paradicsom");
+		ingredientTypeRepository.save(iT17);
+
+		IngredientType iT18 = new IngredientType();
+		iT18.setPricePergrams(85);
+		iT18.setTypename("ketchup");
+		ingredientTypeRepository.save(iT18);
+
+		IngredientType iT19 = new IngredientType();
+		iT19.setPricePergrams(50);
+		iT19.setTypename("oregánó");
+		ingredientTypeRepository.save(iT19);
+
+		IngredientType iT20 = new IngredientType();
+		iT20.setPricePergrams(30);
+		iT20.setTypename("kakukkfű");
+		ingredientTypeRepository.save(iT20);
+
+		IngredientType iT21 = new IngredientType();
+		iT21.setPricePergrams(90);
+		iT21.setTypename("bazsalikom");
+		ingredientTypeRepository.save(iT21);
+
+		IngredientType iT22 = new IngredientType();
+		iT22.setPricePergrams(200);
+		iT22.setTypename("fekete bors ízlés szerint");
+		ingredientTypeRepository.save(iT22);
+
+		IngredientType iT32 = new IngredientType();
+		iT32.setPricePergrams(85);
+		iT32.setTypename("tészta");
+		ingredientTypeRepository.save(iT32);
+
+		IngredientType iT23 = new IngredientType();
+		iT23.setPricePergrams(50);
+		iT23.setTypename("fokhagyma");
+		ingredientTypeRepository.save(iT23);
+
+		IngredientType iT24 = new IngredientType();
+		iT24.setPricePergrams(50);
+		iT24.setTypename("kristálycukor");
+		ingredientTypeRepository.save(iT24);
+
+		IngredientType iT25 = new IngredientType();
+		iT25.setPricePergrams(30);
+		iT25.setTypename("paprika");
+		ingredientTypeRepository.save(iT25);
+
+		IngredientType iT26 = new IngredientType();
+		iT26.setPricePergrams(90);
+		iT26.setTypename("csirke alsócomb");
+		ingredientTypeRepository.save(iT26);
+
+		IngredientType iT27 = new IngredientType();
+		iT27.setPricePergrams(200);
+		iT27.setTypename("tejföl");
+		ingredientTypeRepository.save(iT27);
+
+		IngredientType iT28 = new IngredientType();
+		iT28.setPricePergrams(85);
+		iT28.setTypename("majoranna");
+		ingredientTypeRepository.save(iT28);
+
+		IngredientType iT29 = new IngredientType();
+		iT29.setPricePergrams(50);
+		iT29.setTypename("tej");
+		ingredientTypeRepository.save(iT29);
+
+		IngredientType iT30 = new IngredientType();
+		iT30.setPricePergrams(50);
+		iT30.setTypename("édesburgonya");
+		ingredientTypeRepository.save(iT30);
+
+		IngredientType iT31 = new IngredientType();
+		iT31.setPricePergrams(30);
+		iT31.setTypename("szerecsendió");
+		ingredientTypeRepository.save(iT31);
+	}
+	
 	private void saveIngredient(){
-		
-	} */
+		Ingredient ing = new Ingredient();
+		ing.setOwner(user);
+		ing.setType(iT);
+		ing.setQuantity(1);
+		ingredientRepository.save(ing);
+	} 
 }
