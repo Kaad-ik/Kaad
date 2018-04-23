@@ -9,24 +9,30 @@ import hu.elte.recipe.entities.Role;
 import hu.elte.recipe.entities.User;
 import hu.elte.recipe.repositories.UserRepository;
 
+/*
 import hu.elte.recipe.entities.Food;
 import hu.elte.recipe.repositories.FoodRepository;
 
 import hu.elte.recipe.entities.IngredientType;
 import hu.elte.recipe.repositories.IngredientTypeRepository;
 
+import hu.elte.recipe.entities.Ingredient;
+import hu.elte.recipe.repositories.IngredientRepository; */
+
 @Service
 @Transactional
 public class PopulateDatabaseService {
 	
 	@Autowired private UserRepository userRepository;
-	@Autowired private FoodRepository foodRepository;
-	@Autowired private IngredientTypeRepository ingredientTypeRepository;
+	//@Autowired private FoodRepository foodRepository;
+	//@Autowired private IngredientTypeRepository ingredientTypeRepository;
+	//@Autowired private IngredientRepository ingredientRepository;
 	
 	public void populateDatabase() {
 		savePlayer();
-		saveFood();
-		saveType();
+		//saveFood();
+		//saveType();
+		//saveIngredient();
 	}
 
 	private void savePlayer() {
@@ -130,7 +136,7 @@ public class PopulateDatabaseService {
 		user9.setRole(Role.GUEST);
 		userRepository.save(user9);
 	}
-
+/*
 	private void saveFood(){
 		Food food = new Food();
 		food.setName("Gulyásleves");
@@ -207,4 +213,8 @@ public class PopulateDatabaseService {
 		iT6.setImgUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSul1-SR7unqeiEoEeTVZIw8asHKOXH1JjScDMlNL9Abl1sroKPtQ");
 		ingredientTypeRepository.save(iT6);
 	}
+
+	private void saveIngredient(){
+		
+	} */
 }
