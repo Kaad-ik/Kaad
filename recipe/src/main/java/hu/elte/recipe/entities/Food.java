@@ -24,6 +24,9 @@ public class Food {
     @Column
     private String imgurl;
 
+    @Column
+    private String recipe;
+
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Ingredient.class)
     private List<Ingredient> ingredients;
@@ -35,10 +38,11 @@ public class Food {
     public Food() {
     }
 
-    public Food(String name, String imgurl, List<Ingredient> ingredients) {
+    public Food(String name, String imgurl, List<Ingredient> ingredients, String recipe) {
         this.name = name;
         this.imgurl = imgurl;
         this.ingredients = ingredients;
+        this.recipe = recipe;
     }
 
     public Long getId() {
@@ -63,6 +67,14 @@ public class Food {
 
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public String getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(String recipe) {
+        this.recipe = recipe;
     }
 
     @JsonProperty("ingredients")
