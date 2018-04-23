@@ -11,9 +11,6 @@ import org.springframework.core.io.Resource;
 import java.io.*;
 import java.util.Properties;
 
-/**
- * Created by doma on 2017.11.02..
- */
 public class SFTPConnection {
 
     private static final String SERVER_IMAGES_URL = "images";
