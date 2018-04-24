@@ -24,7 +24,7 @@ public class Food {
     @Column
     private String imgurl;
 
-    @Column
+    @Column(length = 100000)
     private String recipe;
 
     @JsonIgnore
@@ -83,6 +83,10 @@ public class Food {
             return ingredients.stream().map(IngredientHttpEntity::new).collect(Collectors.toList());
         }
         return Collections.emptyList();
+    }
+
+    public void addIngredient(Ingredient ingredient){
+        this.ingredients.add(ingredient);
     }
 
 }

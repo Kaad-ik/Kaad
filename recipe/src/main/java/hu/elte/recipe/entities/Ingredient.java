@@ -26,10 +26,15 @@ public class Ingredient {
     @Column(nullable = false)
     private int quantity;
 
-    public Ingredient(IngredientType type, User owner, int quantity) {
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private IngredientUnitType unit;
+
+    public Ingredient(IngredientType type, User owner, int quantity, IngredientUnitType unit) {
         this.type = type;
         this.owner = owner;
         this.quantity = quantity;
+        this.unit = unit;
     }
 
     public Ingredient() {
@@ -65,6 +70,14 @@ public class Ingredient {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public IngredientUnitType getUnit() {
+        return unit;
+    }
+
+    public void setUnit(IngredientUnitType unit) {
+        this.unit = unit;
     }
 
     @JsonProperty("typename")
