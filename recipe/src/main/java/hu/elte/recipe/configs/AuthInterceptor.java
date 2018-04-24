@@ -15,9 +15,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by doma on 2017.10.31..
- */
 @Component
 public class AuthInterceptor extends HandlerInterceptorAdapter{
     @Autowired

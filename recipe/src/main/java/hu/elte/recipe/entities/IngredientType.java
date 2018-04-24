@@ -3,7 +3,6 @@ package hu.elte.recipe.entities;
 import javax.persistence.*;
 import java.util.Objects;
 
-
 @Entity
 @Table(name = "ingredient_types")
 public class IngredientType {
@@ -16,9 +15,6 @@ public class IngredientType {
     @Column(unique = true, nullable = false)
     private String typename;
 
-    @Column(unique = true)
-    private String imgUrl;
-
     @Column
     private int pricePergrams;
 
@@ -29,13 +25,12 @@ public class IngredientType {
         IngredientType that = (IngredientType) o;
         return pricePergrams == that.pricePergrams &&
                 Objects.equals(id, that.id) &&
-                Objects.equals(typename, that.typename) &&
-                Objects.equals(imgUrl, that.imgUrl);
+                Objects.equals(typename, that.typename);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, typename, imgUrl, pricePergrams);
+        return Objects.hash(id, typename, pricePergrams);
     }
 
     public int getPricePergrams() {
@@ -44,14 +39,6 @@ public class IngredientType {
 
     public void setPricePergrams(int pricePergrams) {
         this.pricePergrams = pricePergrams;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
     }
 
     public String getTypename() {

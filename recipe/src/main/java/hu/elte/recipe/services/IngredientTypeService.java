@@ -37,7 +37,6 @@ public class IngredientTypeService {
         try{
             IngredientType current = ingredientTypeRepository.findOne(id);
             current.setTypename(ingredientType.getTypename());
-            current.setImgUrl(ingredientType.getImgUrl());
             return ingredientTypeRepository.save(current);
         }catch (Exception e){
             throw new DuplicationException("Unique key duplicated");

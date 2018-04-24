@@ -6,10 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-/**
- * Created by doma on 2017.10.18..
- */
-
 @Repository
 public interface UserRepository extends CrudRepository<User, Long>{
     Optional<User> findByUserName(String userName);

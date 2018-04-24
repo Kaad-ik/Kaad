@@ -38,7 +38,7 @@ public class FoodService {
 
     public Food addFood(FoodHttpEntity entity){
         try{
-            Food food = new Food(entity.getName(), entity.getImgUrl(), validateIngredients(entity.getIngredients()));
+            Food food = new Food(entity.getName(), entity.getImgUrl(), validateIngredients(entity.getIngredients()), entity.getRecipe());
             return foodRepository.save(food);
         }catch (Exception e){
             throw new DuplicationException("Unique key duplicated");
@@ -58,6 +58,7 @@ public class FoodService {
         Food current = foodRepository.findOne(id);
         current.setName(entity.getName());
         current.setImgurl(entity.getImgUrl());
+        current.setRecipe(entity.getRecipe());
         current.setIngredients(mapHttpEntities(entity.getIngredients()));
             return foodRepository.save(current);
         }catch (Exception e){
