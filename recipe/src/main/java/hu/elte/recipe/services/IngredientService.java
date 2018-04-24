@@ -32,7 +32,7 @@ public class IngredientService {
     }
 
     Ingredient addIngredientByHttpEntity(IngredientHttpEntity entity){
-        IngredientType type = ingredientTypeService.getByName(entity.getType()).get();
+        IngredientType type = ingredientTypeService.getByName(entity.getName()).get();
         return addIngredient(new Ingredient(type, null, entity.getQuantity(), entity.getUnit()));
     }
 

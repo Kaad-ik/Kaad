@@ -30,11 +30,11 @@ public class Food {
     private String recipe;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Ingredient.class)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Ingredient.class)
     private List<Ingredient> ingredients;
     
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY, targetEntity = User.class)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = User.class)
     private List<User> users;
 
     public String getName() {

@@ -31,8 +31,8 @@
     			  <li id="user"><a href="details.html">User details</a></li>
     			  </li>
     			  <li id="my-foods"><a href="my-foods.html">My foods</a></li>
-    			  <li id="my-ingredients"><a href="my-ingredients.html">My ingredients</a></li>
-    			  <li id="foods" class="active"><a href="#">All foods</a></li>
+    			  <li id="my-ingredients" class ="active"><a href="#">My ingredients</a></li>
+    			  <li id="foods"><a href="foods.html">All foods</a></li>
     			  </li>
 			    </ul>
     			<ul class="nav navbar-nav navbar-right">
@@ -42,15 +42,16 @@
 			</nav>
 		</header>
 		<main>
-			<section id="foods" class="container">
+			<section id="ingredients" class="container">
 				<h4>Wagers</h4>
 				<table id="foods-table" class="table-style">
 					<tr class="th-style">
-						<th>#</th><th>Food name</th><th>Image URL</th>
+						<th></th><th>#</th><th>Ingredient name</th><th>Quantity</th><th>Unit</th><th>Price</th><th>Currency</th>
 					</tr>
-					<c:forEach var="food" items="${foods}" varStatus="loopCounter">
+					<c:forEach var="ingredient" items="${ingredients}" varStatus="loopCounter">
 					<tr class="td-style">
-						</td><th>${loopCounter.count}</th><td><a href='food/<c:out value="${food.id}"/>' >${food.name}</a></td><td><a href="${food.imgUrl}">${food.imgUrl}</a></td>
+						<td><a id="remove-button" class="btn btn-default btn-xs" alt="Remove" href='deleteIngredient?id=<c:out value="${ingredient.id}"/>'>Remove</a>
+						</td><th>${loopCounter.count}</th><td>${ingredient.name}</td><td>${ingredient.quantity}</td><td>${ingredient.unit}</td><td>${ingredient.price}</td><th>${ingredient.currency}</th>
 					</tr>
 					</c:forEach>
 				</table>

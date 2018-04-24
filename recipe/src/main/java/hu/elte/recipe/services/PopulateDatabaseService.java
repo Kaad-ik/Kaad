@@ -73,134 +73,167 @@ public class PopulateDatabaseService {
 	public void saveIngredientType() {
 		iT.setPricePerGramms(200);
 		iT.setTypeName("marhalábszár");
+		iT.setCurrency(Currency.EUR);
 		ingredientTypeRepository.save(iT);
 
 		iT1.setPricePerGramms(30);
 		iT1.setTypeName("vöröshagyma");
+		iT.setCurrency(Currency.HUF);
 		ingredientTypeRepository.save(iT1);
 		
 		iT2.setPricePerGramms(100);
 		iT2.setTypeName("csirkemell");
+		iT.setCurrency(Currency.USD);
 		ingredientTypeRepository.save(iT2);
 
 		iT3.setPricePerGramms(90);
 		iT3.setTypeName("disznózsír");
+		iT.setCurrency(Currency.USD);
 		ingredientTypeRepository.save(iT3);
 
 		iT4.setPricePerGramms(200);
 		iT4.setTypeName("fűszerpaprika");
+		iT.setCurrency(Currency.EUR);
 		ingredientTypeRepository.save(iT4);
 
 		iT5.setPricePerGramms(85);
 		iT5.setTypeName("paradicsom");
+		iT.setCurrency(Currency.HUF);
 		ingredientTypeRepository.save(iT5);
 
 		iT6.setPricePerGramms(50);
 		iT6.setTypeName("erős paprika");
+		iT.setCurrency(Currency.HUF);
 		ingredientTypeRepository.save(iT6);
 
 		iT7.setPricePerGramms(30);
 		iT7.setTypeName("csípős paprikakrém");
+		iT.setCurrency(Currency.EUR);
 		ingredientTypeRepository.save(iT7);
 
 		iT8.setPricePerGramms(90);
 		iT8.setTypeName("só");
+		iT.setCurrency(Currency.USD);
 		ingredientTypeRepository.save(iT8);
 
 		iT9.setPricePerGramms(200);
 		iT9.setTypeName("sárgarépa");
+		iT.setCurrency(Currency.EUR);
 		ingredientTypeRepository.save(iT9);
 
 		iT10.setPricePerGramms(85);
 		iT10.setTypeName("fehérrépa");
+		iT.setCurrency(Currency.USD);
 		ingredientTypeRepository.save(iT10);
 
 		iT11.setPricePerGramms(50);
 		iT11.setTypeName("burgonya");
+		iT.setCurrency(Currency.HUF);
 		ingredientTypeRepository.save(iT11);
 
 		iT12.setPricePerGramms(30);
 		iT12.setTypeName("víz");
+		iT.setCurrency(Currency.HUF);
 		ingredientTypeRepository.save(iT12);
 
 		iT13.setPricePerGramms(90);
 		iT13.setTypeName("tojás");
+		iT.setCurrency(Currency.EUR);
 		ingredientTypeRepository.save(iT13);
 
 		iT14.setPricePerGramms(200);
 		iT14.setTypeName("finomliszt");
+		iT.setCurrency(Currency.USD);
 		ingredientTypeRepository.save(iT14);
 
 		iT15.setPricePerGramms(85);
 		iT15.setTypeName("darált sertéshús");
+		iT.setCurrency(Currency.HUF);
 		ingredientTypeRepository.save(iT15);
 
 		iT16.setPricePerGramms(50);
 		iT16.setTypeName("olaj");
+		iT.setCurrency(Currency.USD);
 		ingredientTypeRepository.save(iT16);
 
 		iT17.setPricePerGramms(200);
 		iT17.setTypeName("passzírozott paradicsom");
+		iT.setCurrency(Currency.EUR);
 		ingredientTypeRepository.save(iT17);
 
 		iT18.setPricePerGramms(85);
 		iT18.setTypeName("ketchup");
+		iT.setCurrency(Currency.HUF);
 		ingredientTypeRepository.save(iT18);
 
 		iT19.setPricePerGramms(50);
 		iT19.setTypeName("oregánó");
+		iT.setCurrency(Currency.EUR);
 		ingredientTypeRepository.save(iT19);
 
 		iT20.setPricePerGramms(30);
 		iT20.setTypeName("kakukkfű");
+		iT.setCurrency(Currency.USD);
 		ingredientTypeRepository.save(iT20);
 
 		iT21.setPricePerGramms(90);
 		iT21.setTypeName("bazsalikom");
+		iT.setCurrency(Currency.HUF);
 		ingredientTypeRepository.save(iT21);
 
 		iT22.setPricePerGramms(200);
 		iT22.setTypeName("fekete bors");
+		iT.setCurrency(Currency.EUR);
 		ingredientTypeRepository.save(iT22);
 
 		iT32.setPricePerGramms(85);
 		iT32.setTypeName("tészta");
+		iT.setCurrency(Currency.HUF);
 		ingredientTypeRepository.save(iT32);
 
 		iT23.setPricePerGramms(50);
 		iT23.setTypeName("fokhagyma");
+		iT.setCurrency(Currency.EUR);
 		ingredientTypeRepository.save(iT23);
 
 		iT24.setPricePerGramms(50);
 		iT24.setTypeName("kristálycukor");
+		iT.setCurrency(Currency.HUF);
 		ingredientTypeRepository.save(iT24);
 
 		iT25.setPricePerGramms(30);
 		iT25.setTypeName("paprika");
+		iT.setCurrency(Currency.EUR);
 		ingredientTypeRepository.save(iT25);
 
 		iT26.setPricePerGramms(90);
 		iT26.setTypeName("csirke alsócomb");
+		iT.setCurrency(Currency.USD);
 		ingredientTypeRepository.save(iT26);
 
 		iT27.setPricePerGramms(200);
 		iT27.setTypeName("tejföl");
+		iT.setCurrency(Currency.EUR);
 		ingredientTypeRepository.save(iT27);
 
 		iT28.setPricePerGramms(85);
 		iT28.setTypeName("majoranna");
+		iT.setCurrency(Currency.EUR);
 		ingredientTypeRepository.save(iT28);
 
 		iT29.setPricePerGramms(50);
 		iT29.setTypeName("tej");
+		iT.setCurrency(Currency.HUF);
 		ingredientTypeRepository.save(iT29);
 
 		iT30.setPricePerGramms(50);
 		iT30.setTypeName("édesburgonya");
+		iT.setCurrency(Currency.USD);
 		ingredientTypeRepository.save(iT30);
 
 		iT31.setPricePerGramms(30);
 		iT31.setTypeName("szerecsendió");
+		iT.setCurrency(Currency.HUF);
 		ingredientTypeRepository.save(iT31);
 	}
 	

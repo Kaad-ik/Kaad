@@ -5,24 +5,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
 import hu.elte.recipe.entities.User;
+import hu.elte.recipe.repositories.IngredientRepository;
 import hu.elte.recipe.repositories.UserRepository;
 import hu.elte.recipe.entities.Food;
 import hu.elte.recipe.entities.Ingredient;
 import hu.elte.recipe.entities.Role;
 import hu.elte.recipe.entities.httpentities.UserHttpEntity;
-
 import hu.elte.recipe.exceptions.UserNotValidException;
 import hu.elte.recipe.exceptions.DuplicationException;
 
-import java.util.List;
 
 @SessionScope
 @Service
 public class UserService {
 
-    private static final String USERNAME_DUPLICATED_MESSAGE = "The user with that username is already exist.";
+    private static final String USERNAME_DUPLICATED_MESSAGE = "The user with that username already exists.";
 
     @Autowired private UserRepository userRepository;
+    @Autowired private IngredientRepository ingredientRepository;
 
 	private User actualUser;
 
@@ -32,14 +32,16 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User updateUser(Long id, User user){
-        User current = userRepository.findOne(id);
+    public User updateUser(UserHttpEntity user){
+        User current = userRepository.findOne(user.getId());
         current.setUserName(user.getUserName());
         current.setMoney(user.getMoney());
-        current.setIngredients(user.getIngredients());
-        current.setPassword(user.getPassword());
         current.setRole(user.getRole());
+        current.setCurrency(user.getCurrency());
+        current.setEmail(user.getEmail());
+        current.setFullName(user.getFullName());
         try{
+        	actualUser = current;
             return userRepository.save(current);
         }catch (Exception e){
             throw new DuplicationException(USERNAME_DUPLICATED_MESSAGE);
@@ -108,7 +110,6 @@ public class UserService {
 		return actualUser;
 	}
 	
-   
 	void cook(Food food) {
        for(Ingredient ingredient : actualUser.getIngredients()){
            if(food.getIngredients().stream().anyMatch(i -> i.getType().equals(ingredient.getType()))){
@@ -133,5 +134,12 @@ public class UserService {
     public void changepassword(String newpassword) {
         actualUser.setPassword(newpassword);
         userRepository.save(actualUser);
+    }
+    
+    public void deleteIngredient(Long id) {
+    	Ingredient ingredient = ingredientRepository.findOne(id);
+    	actualUser.deleteIngredient(ingredient);
+    	userRepository.save(actualUser);
+    	ingredientRepository.delete(ingredient);
     }
 }

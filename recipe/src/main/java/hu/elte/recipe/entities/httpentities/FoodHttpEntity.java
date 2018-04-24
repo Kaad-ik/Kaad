@@ -9,6 +9,7 @@ public class FoodHttpEntity {
     private Set<IngredientHttpEntity> ingredients;
     private String imgUrl;
     private String recipe;
+    private Set<UserHttpEntity> users;
 
     public FoodHttpEntity() {}
 
@@ -51,4 +52,14 @@ public class FoodHttpEntity {
     public void setRecipe(String recipe) {
         this.recipe = recipe;
     }
+
+	public Set<UserHttpEntity> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<UserHttpEntity> users) {
+		this.users = users;
+	}
+    
+    
 }

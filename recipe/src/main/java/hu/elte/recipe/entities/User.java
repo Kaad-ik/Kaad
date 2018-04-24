@@ -44,11 +44,11 @@ public class User {
     private Currency currency;
 
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Food.class)
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Food.class)
     private List<Food> cooked;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Ingredient.class)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Ingredient.class)
     private List<Ingredient> ingredients;
 
     public List<Food> getCooked() {
@@ -145,6 +145,10 @@ public class User {
         }else{
             this.ingredients.add(ingredient);
         }
+    }
+    
+    public void deleteIngredient(Ingredient ingredient) {
+    	this.ingredients.remove(ingredient);
     }
 
     @JsonProperty("ingredients")

@@ -17,6 +17,10 @@ public class IngredientType {
 
     @Column
     private int pricePerGramms;
+    
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Currency currency;
 
     @Override
     public boolean equals(Object o) {
@@ -48,4 +52,13 @@ public class IngredientType {
     public void setTypeName(String typename) {
         this.typeName = typename;
     }
+
+	public Currency getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(Currency currency) {
+		this.currency = currency;
+	}
+    
 }
