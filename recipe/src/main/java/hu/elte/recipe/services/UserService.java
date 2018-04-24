@@ -32,10 +32,6 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Iterable<User> findAllUser(){
-        return userRepository.findAll();
-    }
-
     public User updateUser(Long id, User user){
         User current = userRepository.findOne(id);
         current.setUserName(user.getUserName());

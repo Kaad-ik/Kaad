@@ -1,16 +1,11 @@
 package hu.elte.recipe.rest;
 
-import javax.servlet.ServletException;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import org.springframework.web.servlet.ModelAndView;
 
 import hu.elte.recipe.entities.User;
@@ -40,11 +35,17 @@ public class LoginController {
 			return new ModelAndView("jajj");
 		}
 		try {
-			User actualUser = userService.login(user);
-			return new ModelAndView("redirect:user");
+			userService.login(user);
+			return new ModelAndView("redirect:user/details.html");
 		} catch(UserNotValidException u) {
 			return new ModelAndView("redirect:/");
 		}
+	}
+	
+	@RequestMapping(value = "user/logout")
+	public ModelAndView logout() {
+		userService.logout();
+		return new ModelAndView("redirect:/");
 	}
 
 }

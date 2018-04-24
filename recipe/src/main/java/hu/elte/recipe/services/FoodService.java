@@ -4,7 +4,7 @@ import hu.elte.recipe.entities.Food;
 import hu.elte.recipe.entities.Ingredient;
 import hu.elte.recipe.entities.httpentities.FoodHttpEntity;
 import hu.elte.recipe.entities.httpentities.IngredientHttpEntity;
-
+import hu.elte.recipe.entities.httpentities.transformers.FoodTransformer;
 import hu.elte.recipe.exceptions.DuplicationException;
 import hu.elte.recipe.exceptions.NoEnoughPropertyException;
 import hu.elte.recipe.exceptions.NotFoundException;
@@ -14,6 +14,8 @@ import hu.elte.recipe.repositories.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Lists;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
@@ -21,20 +23,17 @@ import java.util.stream.Collectors;
 
 @Service
 public class FoodService {
-    private FoodRepository foodRepository;
-    private IngredientService ingredientService;
-    private IngredientTypeService ingredientTypeService;
-    private UserService userService;
+	
+    @Autowired private FoodRepository foodRepository;
+    @Autowired private IngredientService ingredientService;
+    @Autowired private IngredientTypeService ingredientTypeService;
+    @Autowired private UserService userService;
+    
+    @Autowired private FoodTransformer foodTransformer;
 
-    @Autowired
-    public FoodService(FoodRepository foodRepository, IngredientService ingredientService, UserService userService) {
-        this.foodRepository = foodRepository;
-        this.ingredientService = ingredientService;
-        this.userService = userService;
-    }
-
-    public Iterable<Food> getAllFood(){
-        return foodRepository.findAll();
+    public List<FoodHttpEntity> getAllFood(){
+        List<Food> foods = Lists.newArrayList(foodRepository.findAll());
+        return foodTransformer.transformFoodsToFoodHttpEntities(foods);
     }
 
     public Food addFood(FoodHttpEntity entity){
