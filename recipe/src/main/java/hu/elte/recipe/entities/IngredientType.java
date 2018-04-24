@@ -13,39 +13,39 @@ public class IngredientType {
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String typename;
+    private String typeName;
 
     @Column
-    private int pricePergrams;
+    private int pricePerGramms;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IngredientType that = (IngredientType) o;
-        return pricePergrams == that.pricePergrams &&
+        return pricePerGramms == that.pricePerGramms &&
                 Objects.equals(id, that.id) &&
-                Objects.equals(typename, that.typename);
+                Objects.equals(typeName, that.typeName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, typename, pricePergrams);
+        return Objects.hash(id, typeName, pricePerGramms);
     }
 
-    public int getPricePergrams() {
-        return pricePergrams;
+    public int getPricePerGramms() {
+        return pricePerGramms;
     }
 
-    public void setPricePergrams(int pricePergrams) {
-        this.pricePergrams = pricePergrams;
+    public void setPricePerGramms(int pricePergrams) {
+        this.pricePerGramms = pricePergrams;
     }
 
-    public String getTypename() {
-        return typename;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setTypename(String typename) {
-        this.typename = typename;
+    public void setTypeName(String typename) {
+        this.typeName = typename;
     }
 }

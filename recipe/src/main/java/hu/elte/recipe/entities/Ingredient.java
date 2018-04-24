@@ -83,7 +83,7 @@ public class Ingredient {
     @JsonProperty("typename")
     public String getTypeName(){
         if(type != null){
-            return type.getTypename();
+            return type.getTypeName();
         }
         return null;
     }

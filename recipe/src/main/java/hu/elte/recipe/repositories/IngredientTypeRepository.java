@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface IngredientTypeRepository extends CrudRepository<IngredientType, Long>{
-    Optional<IngredientType> findOneByTypename(String type);
+    Optional<IngredientType> findOneByTypeName(String type);
 }

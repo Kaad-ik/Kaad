@@ -36,7 +36,7 @@ public class IngredientTypeService {
     public IngredientType updateIngredientType(Long id, IngredientType ingredientType){
         try{
             IngredientType current = ingredientTypeRepository.findOne(id);
-            current.setTypename(ingredientType.getTypename());
+            current.setTypeName(ingredientType.getTypeName());
             return ingredientTypeRepository.save(current);
         }catch (Exception e){
             throw new DuplicationException("Unique key duplicated");
@@ -52,6 +52,6 @@ public class IngredientTypeService {
     }
 
     public Optional<IngredientType> getByName(String type) {
-        return ingredientTypeRepository.findOneByTypename(type);
+        return ingredientTypeRepository.findOneByTypeName(type);
     }
 }

@@ -28,9 +28,9 @@
       				<a class="navbar-brand" href="#">Recipe</a>
 			    </div>
     			<ul class="nav navbar-nav">
-    			  <li id="user" class="active"><a href="user/details.html">User details</a></li>
+    			  <li id="user"><a href="user/details.html">User details</a></li>
     			  </li>
-    			  <li id="foods"><a href="#">Foods</a></li>
+    			  <li id="foods" class="active"><a href="#">Foods</a></li>
     			  </li>
 			    </ul>
     			<ul class="nav navbar-nav navbar-right">
@@ -49,7 +49,7 @@
 					<c:forEach var="food" items="${foods}" varStatus="loopCounter">
 					<tr class="td-style">
 						<td><a id="remove-button" class="btn btn-default btn-xs" alt="Remove" href='deleteFood?id=<c:out value="${food.id}"/>'>Remove</a>
-						</td><th>${loopCounter.count}</th><td>${food.name}</td><td>#</td><td>${food.imgurl}</td>
+						</td><th>${loopCounter.count}</th><td>${food.name}</td><td>#</td><td><a href="${food.imgUrl}">${food.imgUrl}</a></td>
 					</tr>
 					</c:forEach>
 				</table>

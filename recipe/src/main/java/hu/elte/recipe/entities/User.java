@@ -44,7 +44,7 @@ public class User {
     private Currency currency;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Food.class)
+    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Food.class)
     private List<Food> cooked;
 
     @JsonIgnore
@@ -59,7 +59,7 @@ public class User {
             cooked.add(food);
         }
         else{
-            cooked=new ArrayList<>();
+            cooked = new ArrayList<>();
             cooked.add(food);
         }
     }

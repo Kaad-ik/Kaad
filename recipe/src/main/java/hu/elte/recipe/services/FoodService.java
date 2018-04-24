@@ -57,7 +57,7 @@ public class FoodService {
         try{
         Food current = foodRepository.findOne(id);
         current.setName(entity.getName());
-        current.setImgurl(entity.getImgUrl());
+        current.setImgUrl(entity.getImgUrl());
         current.setRecipe(entity.getRecipe());
         current.setIngredients(mapHttpEntities(entity.getIngredients()));
             return foodRepository.save(current);

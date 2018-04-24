@@ -17,7 +17,7 @@ public class FoodTransformer {
     	FoodHttpEntity foodHttpEntity = new FoodHttpEntity();
        	foodHttpEntity.setId(food.getId());
         foodHttpEntity.setName(food.getName());
-        foodHttpEntity.setImgUrl(food.getImgurl());
+        foodHttpEntity.setImgUrl(food.getImgUrl());
         if(food.getIngredients() != null) {
             foodHttpEntity.setIngredients(food.getIngredients().stream().map(IngredientHttpEntity::new).collect(Collectors.toSet()));        	
         }
