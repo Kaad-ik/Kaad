@@ -102,7 +102,7 @@
         <mkdir dir="target/classes"/>
         <mkdir dir="target/test-classes"/>
         <copy includeemptydirs="false" todir="target/classes">
-            <fileset dir="src/main/java">
+            <fileset dir="recipe/src/main/java">
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
