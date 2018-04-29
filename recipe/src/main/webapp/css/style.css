@@ -19,6 +19,8 @@ h5,
 	border-bottom-right-radius: 8px;
 	border-bottom-left-radius: 8px;
 	border: 1px solid #481056;
+	font-family: "times new roman", serif;
+	text-shadow: #000000 1px 1px 0px;
 }
 
 #login-main-header h1 {
@@ -129,4 +131,10 @@ h5,
 #my-foods {
 	color: #483d4d;
 	font-weight: bold;
+}
+
+#remove-button {
+	color: #ffffff;
+	background-color: #514878;
+	text-transform: uppercase;
 }
