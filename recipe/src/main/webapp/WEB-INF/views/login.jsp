@@ -27,7 +27,7 @@
     </header>
     <main>
         <header id="login-header" class="container">
-            <h2><span class="blue-text">Login</span> or <span class="blue-text">Register</span> to start!</h2>
+            <h2><span class="blue-text"><b>Login</b></span> or <span class="blue-text"><a href="register.html">Register</a></span> to start!</h2>
         </header>
         <section id="login" class="container">
             <h3>Login</h3>
@@ -38,6 +38,9 @@
                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="required">
                 <button class="btn btn-default" id="login-button">Login</button>
             </form>
+			<c:if test="${not empty message}">
+          		<div class="alert alert-success">${message}</div>
+        	</c:if>
         </section>
     </main>
 

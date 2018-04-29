@@ -51,10 +51,40 @@
 					<c:forEach var="ingredient" items="${ingredients}" varStatus="loopCounter">
 					<tr class="td-style">
 						<td><a id="remove-button" class="btn btn-default btn-xs" alt="Remove" href='deleteIngredient?id=<c:out value="${ingredient.id}"/>'>Remove</a>
-						</td><th>${loopCounter.count}</th><td>${ingredient.name}</td><td>${ingredient.quantity}</td><td>${ingredient.unit}</td><td>${ingredient.price}</td><th>${ingredient.currency}</th>
+						</td><th>${loopCounter.count} ${ingredient.id}</th><td>${ingredient.name}</td><td>${ingredient.quantity}</td><td>${ingredient.unit}</td><td>${ingredient.price}</td><th>${ingredient.currency}</th>
 					</tr>
 					</c:forEach>
 				</table>
+			</section>
+			<section id="account-details" class="container">
+				<h4>New ingredient</h4>
+				<form:form modelAttribute="ingredient" id="account-details-form" class="form-horizontal form-style" action="saveIngredient" method="post">
+				
+					<label for="name" class="control-label col-sm-2">Name</label>
+					<div class="col-sm-10">
+						<form:select path="name" id="name" class="form-control" items="${ingredientTypeModel.ingredientTypes}" required="required" />
+					</div>
+					<label for="price" class="control-label col-sm-2">Price</label>
+					<div class="col-sm-10">
+						<form:input path="price" id="price" class="form-control" required="required" />
+					</div>
+					<label for="quantity" class="control-label col-sm-2">Quantity</label>
+					<div class="col-sm-10">
+						<form:input path="quantity" id="quantity" class="form-control" required="required" />
+					</div>
+					<label for="unit" class="control-label col-sm-2">Unit</label>
+					<div class="col-sm-10">
+						<form:select path="unit" id="unit" class="form-control" items="${unitModel.availableUnits}" required="required" />
+					</div>
+					<label for="currency" class="control-label col-sm-2">Currency</label>
+					<div class="col-sm-10">
+						<form:select path="currency" id="currency" class="form-control" items="${currencyModel.availableCurrencies}" required="required" />
+					</div>
+					<button class="btn btn-default" id="save-button" name="save-button">Save</button>
+				</form:form>
+				<c:if test="${not empty message}">
+          			<div class="alert alert-success">${message}</div>
+        		</c:if>
 			</section>
 		</main>
 	</body>

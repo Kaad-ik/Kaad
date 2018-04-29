@@ -25,7 +25,7 @@ public class IngredientService {
         return ingredientRepository.save(ingredient);
     }
 
-    Ingredient addIngredientByHttpEntity(IngredientHttpEntity entity){
+    public Ingredient addIngredientByHttpEntity(IngredientHttpEntity entity){
         IngredientType type = ingredientTypeService.getByName(entity.getName()).get();
         return addIngredient(new Ingredient(type, null, entity.getQuantity(), entity.getUnit()));
     }
