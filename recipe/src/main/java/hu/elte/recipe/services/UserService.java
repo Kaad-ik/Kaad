@@ -7,6 +7,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import hu.elte.recipe.entities.User;
 import hu.elte.recipe.repositories.IngredientRepository;
 import hu.elte.recipe.repositories.UserRepository;
+import hu.elte.recipe.entities.Currency;
 import hu.elte.recipe.entities.Food;
 import hu.elte.recipe.entities.Ingredient;
 import hu.elte.recipe.entities.Role;
@@ -15,7 +16,6 @@ import hu.elte.recipe.exceptions.UserNotValidException;
 import hu.elte.recipe.exceptions.DuplicationException;
 
 
-@SessionScope
 @Service
 public class UserService {
 
@@ -83,6 +83,9 @@ public class UserService {
         try{
             user.setRole(Role.USER);
             user.setMoney(0);
+            user.setCurrency(Currency.HUF);
+            user.setFullName(entity.getFullName());
+            user.setEmail(entity.getEmail());
             this.actualUser = userRepository.save(user);
             return user;
         }catch (Exception e){

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -50,5 +52,13 @@ public class IngredientTypeService {
 
     public Optional<IngredientType> getByName(String type) {
         return ingredientTypeRepository.findOneByTypeName(type);
+    }
+    
+    public List<String> getAllIngredientTypeName() {
+    	List<String> result = new ArrayList<>();
+    	for(IngredientType i: getAllIngredientType()) {
+    		result.add(i.getTypeName());
+    	}
+    	return result;
     }
 }

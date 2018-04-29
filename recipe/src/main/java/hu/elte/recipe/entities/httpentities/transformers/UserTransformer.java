@@ -13,7 +13,7 @@ public class UserTransformer {
 		userHttpEntity.setId(user.getId());
 		userHttpEntity.setUserName(user.getUserName());
 		userHttpEntity.setEmail(user.getEmail());
-		userHttpEntity.setFullName(user.getEmail());
+		userHttpEntity.setFullName(user.getFullName());
 		userHttpEntity.setCurrency(user.getCurrency());
 		userHttpEntity.setMoney(user.getMoney());
 		userHttpEntity.setRole(user.getRole());

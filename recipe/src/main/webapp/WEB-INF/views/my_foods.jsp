@@ -46,11 +46,10 @@
 				<h4>Foods</h4>
 				<table id="foods-table" class="table-style">
 					<tr class="th-style">
-						<th></th><th>#</th><th>Food name</th><th>Image URL</th>
+						<th>#</th><th>Food name</th><th>Image URL</th>
 					</tr>
 					<c:forEach var="food" items="${foods}" varStatus="loopCounter">
 					<tr class="td-style">
-						<td><a id="remove-button" class="btn btn-default btn-xs" alt="Remove" href='deleteFood?id=<c:out value="${food.id}"/>'>Remove</a>
 						</td><th>${loopCounter.count}</th><td><a href='food/<c:out value="${food.id}"/>' >${food.name}</a></td><td><a href="${food.imgUrl}">${food.imgUrl}</a></td>
 					</tr>
 					</c:forEach>

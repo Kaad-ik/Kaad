@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class Food {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Long id;
 

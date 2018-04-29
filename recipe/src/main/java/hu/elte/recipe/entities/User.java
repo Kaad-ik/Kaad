@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Long id;
 
@@ -148,7 +148,9 @@ public class User {
     }
     
     public void deleteIngredient(Ingredient ingredient) {
+    	System.out.println("size: " + ingredients.size());
     	this.ingredients.remove(ingredient);
+    	System.out.println("size: " + ingredients.size());
     }
 
     @JsonProperty("ingredients")
