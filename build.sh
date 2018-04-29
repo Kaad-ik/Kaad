@@ -1,3 +1,2 @@
 #!/bin/sh
-cd recipe
-mvn clean install
+mvn -f ./recipe/pom.xml clean install
