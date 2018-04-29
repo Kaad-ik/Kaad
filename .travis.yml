@@ -3,4 +3,4 @@ jdk:
     - oraclejdk8
 install: true
 script: 
-    - /recipe mvn clean install
+    - ./recipe mvn clean install
