@@ -42,7 +42,7 @@
 		</header>
 		<main>
 			<section id="foods" class="container">
-				<h4>Wagers</h4>
+				<h4>Foods</h4>
 				<table id="foods-table" class="table-style">
 					<tr class="th-style">
 						<th></th><th>#</th><th>Food name</th><th>Image URL</th>

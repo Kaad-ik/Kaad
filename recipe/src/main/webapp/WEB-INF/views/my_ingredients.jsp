@@ -43,7 +43,7 @@
 		</header>
 		<main>
 			<section id="ingredients" class="container">
-				<h4>Wagers</h4>
+				<h4>Ingredients</h4>
 				<table id="foods-table" class="table-style">
 					<tr class="th-style">
 						<th></th><th>#</th><th>Ingredient name</th><th>Quantity</th><th>Unit</th><th>Price</th><th>Currency</th>
