@@ -1,3 +1,5 @@
 recipe/target/
 recipe/.classpath
 recipe/.settings
+recipe/.idea/
+

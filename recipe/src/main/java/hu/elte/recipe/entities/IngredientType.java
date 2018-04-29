@@ -22,6 +22,14 @@ public class IngredientType {
     @Enumerated(EnumType.STRING)
     private Currency currency;
 
+    public IngredientType(){}
+
+    public IngredientType(String typeName, int pricePerGramms, Currency currency) {
+        this.typeName = typeName;
+        this.pricePerGramms = pricePerGramms;
+        this.currency = currency;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

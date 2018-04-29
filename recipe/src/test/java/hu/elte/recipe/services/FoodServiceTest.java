@@ -77,7 +77,7 @@ public class FoodServiceTest {
     private FoodService foodService;
     
     @Before 
-    public void initMocks() {
+    public void setup() {
         MockitoAnnotations.initMocks(this);
     }
     
@@ -98,10 +98,10 @@ public class FoodServiceTest {
     	verify(foodTransformerMock).transformFoodsToFoodHttpEntities(FOODS);
     }
     
-  /*  @Test(expected = DuplicationException.class)
+    @Test(expected = DuplicationException.class)
     public void shouldThrowDuplicationExceptionWhenSomeErrorOccursOnInsertion() {
     	FoodHttpEntity request = getHttpEntity("kaja1", "kaja1.jpg", INGREDIENTS_1);
-        Food food = new Food(request.getName(), request.getImgUrl(), mapHttpEntities(request.getIngredients()), request.getRecipe());
+        Food food = new Food(request.getName(), request.getImgUrl(), INGREDIENTS_1, "some recipe description");
 
     	when(foodRepositoryMock.save(food)).thenThrow(new Exception());
     	try {
@@ -111,7 +111,7 @@ public class FoodServiceTest {
     		verify(foodRepositoryMock).save(food);
     		throw e;
     	}
-    }*/
+    }
     
     private static FoodHttpEntity getHttpEntity(String name, String imgurl, List<Ingredient> ingredients) {
     	FoodHttpEntity foodHttpEntity = new FoodHttpEntity();
