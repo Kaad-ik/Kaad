@@ -12,6 +12,7 @@ import hu.elte.recipe.exceptions.NotFoundException;
 import hu.elte.recipe.repositories.FoodRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
@@ -40,7 +41,7 @@ public class FoodService {
         try{
             Food food = new Food(entity.getName(), entity.getImgUrl(), validateIngredients(entity.getIngredients()), entity.getRecipe());
             return foodRepository.save(food);
-        }catch (Exception e){
+        }catch (RuntimeException e){
             throw new DuplicationException("Unique key duplicated");
         }
     }
@@ -61,7 +62,7 @@ public class FoodService {
         current.setRecipe(entity.getRecipe());
         current.setIngredients(mapHttpEntities(entity.getIngredients()));
             return foodRepository.save(current);
-        }catch (Exception e){
+        }catch (DuplicateKeyException e){
             throw new DuplicationException("Unique key duplicated");
         }
     }

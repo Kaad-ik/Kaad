@@ -57,4 +57,5 @@ public class IngredientServiceTest {
        verify(ingredientTypeServiceMock).getByName(REQUEST_ENTITY.getName());
        verify(ingredientRepositoryMock).save(expected);
     }
+
 }

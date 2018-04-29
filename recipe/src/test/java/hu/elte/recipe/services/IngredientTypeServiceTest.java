@@ -13,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.dao.DuplicateKeyException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -82,7 +83,7 @@ public class IngredientTypeServiceTest {
 
     @Test(expected = DuplicationException.class)
     public void shouldThrowDuplicationExceptionWhenSOmeErrorOccursOnInsert(){
-        when(ingredientTypeRepositoryMock.save(TYPE_1)).thenThrow(new RuntimeException());
+        when(ingredientTypeRepositoryMock.save(TYPE_1)).thenThrow(new DuplicateKeyException(""));
         try{
             ingredientTypeService.addIngredientType(TYPE_1);
         }catch (DuplicationException e){
@@ -105,7 +106,7 @@ public class IngredientTypeServiceTest {
     @Test(expected = DuplicationException.class)
     public void shouldThrowDuplicationExceptionWhenSOmeErrorOccursOnUpdate(){
         when(ingredientTypeRepositoryMock.findOne(ID)).thenReturn(TYPE_1);
-        when(ingredientTypeRepositoryMock.save(TYPE_1)).thenThrow(new RuntimeException());
+        when(ingredientTypeRepositoryMock.save(TYPE_1)).thenThrow(new DuplicateKeyException(""));
         try {
             ingredientTypeService.updateIngredientType(ID, TYPE_1);
         }catch (DuplicationException e){

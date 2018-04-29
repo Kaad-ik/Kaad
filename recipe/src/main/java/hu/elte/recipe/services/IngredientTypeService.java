@@ -4,6 +4,7 @@ import hu.elte.recipe.entities.IngredientType;
 import hu.elte.recipe.exceptions.DuplicationException;
 import hu.elte.recipe.repositories.IngredientTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -24,7 +25,7 @@ public class IngredientTypeService {
     public IngredientType addIngredientType(IngredientType ingredientType){
         try{
             return ingredientTypeRepository.save(ingredientType);
-        }catch (RuntimeException e){
+        }catch (DuplicateKeyException e){
             throw new DuplicationException("Unique key duplicated");
         }
     }
@@ -34,7 +35,7 @@ public class IngredientTypeService {
             IngredientType current = ingredientTypeRepository.findOne(id);
             current.setTypeName(ingredientType.getTypeName());
             return ingredientTypeRepository.save(current);
-        }catch (RuntimeException e){
+        }catch (DuplicateKeyException e){
             throw new DuplicationException("Unique key duplicated");
         }
     }
