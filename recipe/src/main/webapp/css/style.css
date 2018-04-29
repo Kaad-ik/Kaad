@@ -53,6 +53,7 @@ h5,
 	background-color: #481056;
 	border-radius: 8px;
 	border: 1px solid #481056;
+	letter-spacing: -1px;
 	padding: 0px;
 	margin: auto;
 	width: 96%;
@@ -66,6 +67,7 @@ h5,
 #navbar {
 	background-color: #f2f2f2;
 	padding: 0%;
+	font-variant: small-caps;
 	border-color: #e6e6e6;
 	margin: 1% 1% 0% 1%;
 	color: #565656;
@@ -126,7 +128,6 @@ h5,
 }
 
 #foods
-#foods-table
 #my-ingredients
 #my-foods {
 	color: #483d4d;
@@ -135,6 +136,14 @@ h5,
 
 #remove-button {
 	color: #ffffff;
+	text-align: center;
 	background-color: #514878;
 	text-transform: uppercase;
+}
+
+#foods-table {
+	color: #ffffff;
+	background-color: #4e4e4e;
+	text-align: center;
+	border: 1px dotted #514878;
 }
