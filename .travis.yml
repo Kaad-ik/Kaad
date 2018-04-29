@@ -5,4 +5,4 @@ before_install:
     - chmod +x build.sh
 install: true
 script: 
-    - build.sh
+    - sh build.sh
