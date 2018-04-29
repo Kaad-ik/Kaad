@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "ingredients")
@@ -86,5 +87,22 @@ public class Ingredient {
             return type.getTypeName();
         }
         return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ingredient that = (Ingredient) o;
+        return quantity == that.quantity &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(type, that.type) &&
+                Objects.equals(owner, that.owner) &&
+                unit == that.unit;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, type, owner, quantity, unit);
     }
 }
