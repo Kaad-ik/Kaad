@@ -9,8 +9,8 @@ h4,
 h5,
 #login-button,
 #save-button {
-	background-color: green;
-	color: white;
+	background-color: #481056;
+	color: #f2f2f2;
 }
 
 .form-style {
@@ -18,17 +18,17 @@ h5,
 	border: none;
 	border-bottom-right-radius: 8px;
 	border-bottom-left-radius: 8px;
-	border: 1px solid green;
+	border: 1px solid #481056;
 }
 
 #login-main-header h1 {
-	font-size: 56px;
+	font-size: 54px;
 	margin-bottom: 5px;
 }
 
 #login-main-header {
-	background-color: black;
-	color: white;
+	background-color: #000000;
+	color: #f2f2f2;
 	text-align: center;
 	padding: 5%;
 }
@@ -48,9 +48,9 @@ h5,
 
 #login
 #account-details {
-	background-color: green;
+	background-color: #481056;
 	border-radius: 8px;
-	border: 1px solid green;
+	border: 1px solid #481056;
 	padding: 0px;
 	margin: auto;
 	width: 96%;
@@ -66,7 +66,9 @@ h5,
 	padding: 0%;
 	border-color: #e6e6e6;
 	margin: 1% 1% 0% 1%;
-	color: darkgrey;
+	color: #565656;
+	text-align: center;
+	font-style: italic;
 }
 
 #account-details {
@@ -80,7 +82,7 @@ h5,
 #account-details-form label {
 	padding: 6px 12px;
 	background-color: #e6e6e6;
-	text-align: left;
+	text-align: justify;
 	font-weight: 500;
 	border: 1px solid #ccc;
 	border-top-left-radius: 4px;
@@ -110,4 +112,21 @@ h5,
 	#login {
 		width: 80%;
 	}
+}
+
+#user {
+	background-color: #d2c4d7;
+	color: #4e4e4e;
+	margin: 1%;
+	padding: 1%;
+	text-align: justify;
+	letter-spacing: 1px;
+}
+
+#foods
+#foods-table
+#my-ingredients
+#my-foods {
+	color: #483d4d;
+	font-weight: bold;
 }
