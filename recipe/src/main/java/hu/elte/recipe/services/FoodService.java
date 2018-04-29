@@ -41,7 +41,7 @@ public class FoodService {
         try{
             Food food = new Food(entity.getName(), entity.getImgUrl(), validateIngredients(entity.getIngredients()), entity.getRecipe());
             return foodRepository.save(food);
-        }catch (RuntimeException e){
+        }catch (DuplicateKeyException e){
             throw new DuplicationException("Unique key duplicated");
         }
     }
