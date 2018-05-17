@@ -22,33 +22,58 @@ import java.util.Optional;
 import static junit.framework.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class IngredientTypeServiceTest.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class IngredientTypeServiceTest {
 
+    /** The mocks collector. */
     private final MocksCollector mocksCollector = new MocksCollector();
 
+    /** The Constant ID. */
     private static final Long ID = 1L;
+    
+    /** The Constant TYPE_1. */
     private static final IngredientType TYPE_1 = new IngredientType("cukor",1, Currency.HUF);
+    
+    /** The Constant TYPE_2. */
     private static final IngredientType TYPE_2 = new IngredientType("sór",2, Currency.HUF);
+    
+    /** The Constant TYPE_3. */
     private static final IngredientType TYPE_3 = new IngredientType("és minden mi jó",3, Currency.HUF);
+    
+    /** The Constant INGREDIENT_TYPE_LIST. */
     private static final List<IngredientType> INGREDIENT_TYPE_LIST = Arrays.asList(TYPE_1, TYPE_2, TYPE_3);
 
+    /** The ingredient type repository mock. */
     @Mock
     private IngredientTypeRepository ingredientTypeRepositoryMock;
 
+    /** The ingredient type service. */
     @InjectMocks
     private IngredientTypeService ingredientTypeService;
 
+    /**
+     * Setup.
+     */
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }
 
+    /**
+     * Tear down.
+     */
     @After
     public void tearDown() {
         verifyNoMoreInteractions(mocksCollector.getMocks());
     }
 
+    /**
+     * Should get all ingredient tpe.
+     */
     @Test
     public void shouldGetAllIngredientTpe(){
         when(ingredientTypeRepositoryMock.findAll()).thenReturn(INGREDIENT_TYPE_LIST);
@@ -57,6 +82,9 @@ public class IngredientTypeServiceTest {
         verify(ingredientTypeRepositoryMock).findAll();
     }
 
+    /**
+     * Should find one ingredient tpe by ID.
+     */
     @Test
     public void shouldFindOneIngredientTpeByID(){
         when(ingredientTypeRepositoryMock.findOne(ID)).thenReturn(TYPE_1);
@@ -65,6 +93,9 @@ public class IngredientTypeServiceTest {
         verify(ingredientTypeRepositoryMock).findOne(ID);
     }
 
+    /**
+     * Should find one ingredient tpe by name.
+     */
     @Test
     public void shouldFindOneIngredientTpeByName(){
         when(ingredientTypeRepositoryMock.findOneByTypeName("cukor")).thenReturn(Optional.of(TYPE_1));
@@ -73,6 +104,9 @@ public class IngredientTypeServiceTest {
         verify(ingredientTypeRepositoryMock).findOneByTypeName("cukor");
     }
 
+    /**
+     * Should add ingredient type.
+     */
     @Test
     public void shouldAddIngredientType(){
         when(ingredientTypeRepositoryMock.save(TYPE_1)).thenReturn(TYPE_1);
@@ -81,6 +115,9 @@ public class IngredientTypeServiceTest {
         verify(ingredientTypeRepositoryMock).save(TYPE_1);
     }
 
+    /**
+     * Should throw duplication exception when S ome error occurs on insert.
+     */
     @Test(expected = DuplicationException.class)
     public void shouldThrowDuplicationExceptionWhenSOmeErrorOccursOnInsert(){
         when(ingredientTypeRepositoryMock.save(TYPE_1)).thenThrow(new DuplicateKeyException(""));
@@ -93,6 +130,9 @@ public class IngredientTypeServiceTest {
         }
     }
 
+    /**
+     * Should update existing ingredient tpe.
+     */
     @Test
     public void shouldUpdateExistingIngredientTpe(){
         when(ingredientTypeRepositoryMock.findOne(ID)).thenReturn(TYPE_1);
@@ -103,6 +143,9 @@ public class IngredientTypeServiceTest {
         verify(ingredientTypeRepositoryMock).save(TYPE_1);
     }
 
+    /**
+     * Should throw duplication exception when S ome error occurs on update.
+     */
     @Test(expected = DuplicationException.class)
     public void shouldThrowDuplicationExceptionWhenSOmeErrorOccursOnUpdate(){
         when(ingredientTypeRepositoryMock.findOne(ID)).thenReturn(TYPE_1);
@@ -117,6 +160,9 @@ public class IngredientTypeServiceTest {
         }
     }
 
+    /**
+     * Should delete ingredient type.
+     */
     @Test
     public void shouldDeleteIngredientType(){
         doNothing().when(ingredientTypeRepositoryMock).delete(ID);

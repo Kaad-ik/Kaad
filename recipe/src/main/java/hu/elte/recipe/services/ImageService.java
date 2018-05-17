@@ -10,16 +10,32 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ImageService.
+ */
 @Service
 public class ImageService {
 
+    /** The SFTP connection. */
     private SFTPConnection SFTPConnection;
 
+    /**
+     * Instantiates a new image service.
+     *
+     * @param SFTPConnection the SFTP connection
+     */
     @Autowired
     public ImageService(SFTPConnection SFTPConnection) {
         this.SFTPConnection = SFTPConnection;
     }
 
+    /**
+     * Upload file.
+     *
+     * @param multipartFile the multipart file
+     * @return the string
+     */
     public String uploadFile(MultipartFile multipartFile){
         try {
             return SFTPConnection.upload(multipartFile.getInputStream());
@@ -28,6 +44,12 @@ public class ImageService {
         }
     }
 
+    /**
+     * Download file.
+     *
+     * @param imgUrl the img url
+     * @return the byte[]
+     */
     public byte[] downloadFile(String imgUrl){
         try {
             return SFTPConnection.download(imgUrl);

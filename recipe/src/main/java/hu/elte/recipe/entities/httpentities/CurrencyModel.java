@@ -1,18 +1,32 @@
 package hu.elte.recipe.entities.httpentities;
 
-import java.util.List;
-
 import hu.elte.recipe.entities.Currency;
 
-public class CurrencyModel {
-	
-	private List<Currency> availableCurrencies;
-	
-	public CurrencyModel(List<Currency> availableCurrencies) {
-		this.availableCurrencies = availableCurrencies;
-	}
+import java.util.List;
 
-	public List<Currency> getAvailableCurrencies() {
-		return availableCurrencies;
-	}
+/**
+ * The Class CurrencyModel.
+ */
+public class CurrencyModel {
+
+  /** The available currencies. */
+  private List<Currency> availableCurrencies;
+
+  /**
+   * Instantiates a new currency model.
+   *
+   * @param availableCurrencies the available currencies
+   */
+  public CurrencyModel(List<Currency> availableCurrencies) {
+    this.availableCurrencies = availableCurrencies;
+  }
+
+  /**
+   * Gets the available currencies.
+   *
+   * @return the available currencies
+   */
+  public List<Currency> getAvailableCurrencies() {
+    return availableCurrencies;
+  }
 }

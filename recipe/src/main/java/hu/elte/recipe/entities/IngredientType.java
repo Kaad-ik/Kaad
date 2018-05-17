@@ -1,72 +1,131 @@
 package hu.elte.recipe.entities;
 
-import javax.persistence.*;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/**
+ * The Class IngredientType.
+ */
 @Entity
 @Table(name = "ingredient_types")
 public class IngredientType {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
-    private Long id;
+  /** The id. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column
+  private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String typeName;
+  /** The type name. */
+  @Column(unique = true, nullable = false)
+  private String typeName;
 
-    @Column
-    private int pricePerGramms;
+  /** The price per gramms. */
+  @Column
+  private int pricePerGramms;
     
-    @Column
-    @Enumerated(EnumType.STRING)
-    private Currency currency;
+  /** The currency. */
+  @Column
+  @Enumerated(EnumType.STRING)
+  private Currency currency;
 
-    public IngredientType(){}
+  /**
+   * Instantiates a new ingredient type.
+   */
+  public IngredientType(){}
 
-    public IngredientType(String typeName, int pricePerGramms, Currency currency) {
-        this.typeName = typeName;
-        this.pricePerGramms = pricePerGramms;
-        this.currency = currency;
+  /**
+   * Instantiates a new ingredient type.
+   *
+   * @param typeName the type name
+   * @param pricePerGramms the price per gramms
+   * @param currency the currency
+   */
+  public IngredientType(String typeName, int pricePerGramms, Currency currency) {
+    this.typeName = typeName;
+    this.pricePerGramms = pricePerGramms;
+    this.currency = currency;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        IngredientType that = (IngredientType) o;
-        return pricePerGramms == that.pricePerGramms &&
-                Objects.equals(id, that.id) &&
-                Objects.equals(typeName, that.typeName);
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    IngredientType that = (IngredientType) o;
+    return pricePerGramms == that.pricePerGramms
+        && Objects.equals(id, that.id)
+        && Objects.equals(typeName, that.typeName);
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, typeName, pricePerGramms);
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, typeName, pricePerGramms);
+  }
 
-    public int getPricePerGramms() {
-        return pricePerGramms;
-    }
+  /**
+   * Gets the price per gramms.
+   *
+   * @return the price per gramms
+   */
+  public int getPricePerGramms() {
+    return pricePerGramms;
+  }
 
-    public void setPricePerGramms(int pricePergrams) {
-        this.pricePerGramms = pricePergrams;
-    }
+  /**
+   * Sets the price per gramms.
+   *
+   * @param pricePergrams the new price per gramms
+   */
+  public void setPricePerGramms(int pricePergrams) {
+    this.pricePerGramms = pricePergrams;
+  }
 
-    public String getTypeName() {
-        return typeName;
-    }
+  /**
+   * Gets the type name.
+   *
+   * @return the type name
+   */
+  public String getTypeName() {
+    return typeName;
+  }
 
-    public void setTypeName(String typename) {
-        this.typeName = typename;
-    }
+  /**
+   * Sets the type name.
+   *
+   * @param typename the new type name
+   */
+  public void setTypeName(String typename) {
+    this.typeName = typename;
+  }
 
-	public Currency getCurrency() {
-		return currency;
-	}
+  /**
+   * Gets the currency.
+   *
+   * @return the currency
+   */
+  public Currency getCurrency() {
+    return currency;
+  }
 
-	public void setCurrency(Currency currency) {
-		this.currency = currency;
-	}
+  /**
+   * Sets the currency.
+   *
+   * @param currency the new currency
+   */
+  public void setCurrency(Currency currency) {
+    this.currency = currency;
+  }
     
 }

@@ -9,24 +9,32 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+/**
+ * The Class App.
+ */
 @SpringBootApplication
 @EnableJpaRepositories
 public class App extends WebMvcConfigurerAdapter {
 
-    @Autowired
-    private HandlerInterceptor authInterceptor;
+  /** The auth interceptor. */
+  @Autowired private HandlerInterceptor authInterceptor;
 
-    public static void main( String[] args ) {
-        SpringApplication.run(App.class, args);
-    }
+  /**
+   * The main method.
+   *
+   * @param args the arguments
+   */
+  public static void main(String[] args) {
+    SpringApplication.run(App.class, args);
+  }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authInterceptor);
-    }
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(authInterceptor);
+  }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
-    }
+  @Override
+  public void addCorsMappings(CorsRegistry registry) {
+    registry.addMapping("/**");
+  }
 }

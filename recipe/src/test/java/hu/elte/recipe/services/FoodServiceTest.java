@@ -34,25 +34,53 @@ import hu.elte.recipe.exceptions.NotFoundException;
 import hu.elte.recipe.repositories.FoodRepository;
 import org.springframework.dao.DuplicateKeyException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FoodServiceTest.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class FoodServiceTest {
 
+	/** The Constant USER. */
 	private static final User USER = new User();
+	
+	/** The Constant TYPE_1. */
 	private static final IngredientType TYPE_1 = new IngredientType();
+	
+	/** The Constant TYPE_2. */
 	private static final IngredientType TYPE_2 = new IngredientType();
+	
+	/** The Constant TYPE_3. */
 	private static final IngredientType TYPE_3 = new IngredientType();
+	
+	/** The Constant TYPE_4. */
 	private static final IngredientType TYPE_4 = new IngredientType();
+	
+	/** The Constant TYPE_5. */
 	private static final IngredientType TYPE_5 = new IngredientType();
+	
+	/** The Constant TYPE_6. */
 	private static final IngredientType TYPE_6 = new IngredientType();
 
+    /** The Constant INGREDIENTS_1. */
     private static final List<Ingredient> INGREDIENTS_1 = new ArrayList<>();
+    
+    /** The Constant INGREDIENTS_2. */
     private static final List<Ingredient> INGREDIENTS_2 = new ArrayList<>();    
 
+    /** The Constant FOOD_1. */
     private static final Food FOOD_1 = new Food("kaja1", "kaja1.jpg", null, "longdecription1");
+    
+    /** The Constant FOOD_2. */
     private static final Food FOOD_2 = new Food("kaja2", "kaja2.jpg", null, "longdecription2");
 
+    /** The Constant FOODS. */
     private static final List<Food> FOODS = new ArrayList<>();
+    
+    /** The Constant FOODHTTPENTITIES. */
     private static final List<FoodHttpEntity> FOODHTTPENTITIES = new ArrayList<>();
+	
+	/** The Constant ID. */
 	private static final Long ID = 1L;
 
 	static {
@@ -72,30 +100,44 @@ public class FoodServiceTest {
     	FOODHTTPENTITIES.add(getHttpEntity("kaja1", "kaja1.jpg", INGREDIENTS_1));
     }
     
+        /** The mocks collector. */
         private final MocksCollector mocksCollector = new MocksCollector();
 
+    /** The food repository mock. */
     @Mock
     private FoodRepository foodRepositoryMock;
     
+    /** The food transformer mock. */
     @Mock
     private FoodTransformer foodTransformerMock;
 
+    /** The user service mock. */
     @Mock
 	private UserService userServiceMock;
     
+    /** The food service. */
     @InjectMocks
     private FoodService foodService;
     
+    /**
+     * Setup.
+     */
     @Before 
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }
     
+	/**
+	 * Tear down.
+	 */
 	@After
     public void tearDown() {
     	verifyNoMoreInteractions(mocksCollector.getMocks());
     }
     
+    /**
+     * Should return all foods.
+     */
     @Test
     public void shouldReturnAllFoods() {
     	when(foodRepositoryMock.findAll()).thenReturn(FOODS);
@@ -108,6 +150,9 @@ public class FoodServiceTest {
     	verify(foodTransformerMock).transformFoodsToFoodHttpEntities(FOODS);
     }
     
+    /**
+     * Should throw duplication exception when some error occurs on insertion.
+     */
     @Test(expected = DuplicationException.class)
     public void shouldThrowDuplicationExceptionWhenSomeErrorOccursOnInsertion() {
     	FoodHttpEntity request = getHttpEntity("kaja1", "kaja1.jpg", INGREDIENTS_1);
@@ -122,6 +167,9 @@ public class FoodServiceTest {
     	}
     }
 
+	/**
+	 * Should find one food by ID.
+	 */
 	@Test
 	public void shouldFindOneFoodByID(){
 		when(foodRepositoryMock.findOne(ID)).thenReturn(FOOD_1);
@@ -130,6 +178,9 @@ public class FoodServiceTest {
 		verify(foodRepositoryMock).findOne(ID);
 	}
 
+	/**
+	 * Should delete food.
+	 */
 	@Test
 	public void shouldDeleteFood(){
 		doNothing().when(foodRepositoryMock).delete(ID);
@@ -162,7 +213,15 @@ public class FoodServiceTest {
 		}
 	}*/
 
-    private static FoodHttpEntity getHttpEntity(String name, String imgurl, List<Ingredient> ingredients) {
+    /**
+	 * Gets the http entity.
+	 *
+	 * @param name the name
+	 * @param imgurl the imgurl
+	 * @param ingredients the ingredients
+	 * @return the http entity
+	 */
+	private static FoodHttpEntity getHttpEntity(String name, String imgurl, List<Ingredient> ingredients) {
     	FoodHttpEntity foodHttpEntity = new FoodHttpEntity();
         foodHttpEntity.setName(name);
         foodHttpEntity.setImgUrl(imgurl);

@@ -20,55 +20,137 @@ import hu.elte.recipe.entities.IngredientUnitType;
 import hu.elte.recipe.entities.IngredientType;
 import hu.elte.recipe.repositories.IngredientTypeRepository;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PopulateDatabaseService.
+ */
 @Service
 @Transactional
 public class PopulateDatabaseService {
-	
+
+	/** The user repository. */
 	@Autowired private UserRepository userRepository;
+	
+	/** The food repository. */
 	@Autowired private FoodRepository foodRepository;
+	
+	/** The ingredient type repository. */
 	@Autowired private IngredientTypeRepository ingredientTypeRepository;
+	
+	/** The ingredient repository. */
 	@Autowired private IngredientRepository ingredientRepository;
 
+	/** The i T. */
 	private IngredientType iT = new IngredientType();
+	
+	/** The i T 1. */
 	private IngredientType iT1 = new IngredientType();
+	
+	/** The i T 2. */
 	private IngredientType iT2 = new IngredientType();
+	
+	/** The i T 3. */
 	private IngredientType iT3 = new IngredientType();
+	
+	/** The i T 4. */
 	private IngredientType iT4 = new IngredientType();
+	
+	/** The i T 5. */
 	private IngredientType iT5 = new IngredientType();
+	
+	/** The i T 6. */
 	private IngredientType iT6 = new IngredientType();
+	
+	/** The i T 7. */
 	private IngredientType iT7 = new IngredientType();
+	
+	/** The i T 8. */
 	private IngredientType iT8 = new IngredientType();
+	
+	/** The i T 9. */
 	private IngredientType iT9 = new IngredientType();
+	
+	/** The i T 10. */
 	private IngredientType iT10 = new IngredientType();
+	
+	/** The i T 11. */
 	private IngredientType iT11 = new IngredientType();
+	
+	/** The i T 12. */
 	private IngredientType iT12 = new IngredientType();
+	
+	/** The i T 13. */
 	private IngredientType iT13 = new IngredientType();
+	
+	/** The i T 14. */
 	private IngredientType iT14 = new IngredientType();
+	
+	/** The i T 15. */
 	private IngredientType iT15 = new IngredientType();
+	
+	/** The i T 16. */
 	private IngredientType iT16 = new IngredientType();
+	
+	/** The i T 17. */
 	private IngredientType iT17 = new IngredientType();
+	
+	/** The i T 18. */
 	private IngredientType iT18 = new IngredientType();
+	
+	/** The i T 19. */
 	private IngredientType iT19 = new IngredientType();
+	
+	/** The i T 20. */
 	private IngredientType iT20 = new IngredientType();
+	
+	/** The i T 21. */
 	private IngredientType iT21 = new IngredientType();
+	
+	/** The i T 22. */
 	private IngredientType iT22 = new IngredientType();
+	
+	/** The i T 23. */
 	private IngredientType iT23 = new IngredientType();
+	
+	/** The i T 24. */
 	private IngredientType iT24 = new IngredientType();
+	
+	/** The i T 25. */
 	private IngredientType iT25 = new IngredientType();
+	
+	/** The i T 26. */
 	private IngredientType iT26 = new IngredientType();
+	
+	/** The i T 27. */
 	private IngredientType iT27 = new IngredientType();
+	
+	/** The i T 28. */
 	private IngredientType iT28 = new IngredientType();
+	
+	/** The i T 29. */
 	private IngredientType iT29 = new IngredientType();
+	
+	/** The i T 30. */
 	private IngredientType iT30 = new IngredientType();
+	
+	/** The i T 31. */
 	private IngredientType iT31 = new IngredientType();
+	
+	/** The i T 32. */
 	private IngredientType iT32 = new IngredientType();
 
+	/**
+	 * Populate database.
+	 */
 	public void populateDatabase() {
 		saveIngredientType();
 		saveFood();
 		savePlayer();
 	}
 	
+	/**
+	 * Save ingredient type.
+	 */
 	public void saveIngredientType() {
 		iT.setPricePerGramms(200);
 		iT.setTypeName("marhalábszár");
@@ -236,6 +318,9 @@ public class PopulateDatabaseService {
 		ingredientTypeRepository.save(iT31);
 	}
 	
+	/**
+	 * Save food.
+	 */
 	private void saveFood(){
 		
 		Food food = new Food();
@@ -326,6 +411,9 @@ public class PopulateDatabaseService {
 		
 	}  
 
+	/**
+	 * Save player.
+	 */
 	private void savePlayer() {
 		User user = new User();
 		user.setUserName("admin");
@@ -477,6 +565,14 @@ public class PopulateDatabaseService {
 		userRepository.save(user);
 	}
 	
+	/**
+	 * Save ingredient.
+	 *
+	 * @param ingredientType the ingredient type
+	 * @param quantity the quantity
+	 * @param unitType the unit type
+	 * @return the ingredient
+	 */
 	private Ingredient saveIngredient(IngredientType ingredientType, int quantity, IngredientUnitType unitType){
 		Ingredient ing = new Ingredient();
 		ing.setType(ingredientType);

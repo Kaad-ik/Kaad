@@ -16,16 +16,34 @@ import hu.elte.recipe.exceptions.DuplicationException;
 import hu.elte.recipe.exceptions.UserNotValidException;
 import hu.elte.recipe.services.UserService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RegisterController.
+ */
 @RestController
 public class RegisterController {
 
+	/** The user service. */
 	@Autowired private UserService userService;
 	
+	/**
+	 * Show login page.
+	 *
+	 * @return the model and view
+	 */
 	@RequestMapping(value = "register.html", method = RequestMethod.GET)
 	public ModelAndView showLoginPage() {
 		return new ModelAndView("register");
 	}
 	
+	/**
+	 * Login.
+	 *
+	 * @param user the user
+	 * @param result the result
+	 * @param redirectAttributes the redirect attributes
+	 * @return the model and view
+	 */
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public ModelAndView login(@ModelAttribute("user") UserHttpEntity user, BindingResult result, RedirectAttributes redirectAttributes) {
 		if(result.hasErrors()) {

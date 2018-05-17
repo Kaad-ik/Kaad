@@ -8,9 +8,19 @@ import org.springframework.stereotype.Component;
 import hu.elte.recipe.entities.Ingredient;
 import hu.elte.recipe.entities.httpentities.IngredientHttpEntity;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class IngredientTransformer.
+ */
 @Component
 public class IngredientTransformer {
 
+	/**
+	 * Transform ingredient to ingredient http entity.
+	 *
+	 * @param ingredient the ingredient
+	 * @return the ingredient http entity
+	 */
 	public IngredientHttpEntity transformIngredientToIngredientHttpEntity(Ingredient ingredient) {
 		IngredientHttpEntity entity = new IngredientHttpEntity();
 		entity.setId(ingredient.getId());
@@ -22,6 +32,12 @@ public class IngredientTransformer {
 		return entity;
 	}
 	
+	/**
+	 * Transform ingredients to ingredient http entities.
+	 *
+	 * @param ingredients the ingredients
+	 * @return the list
+	 */
 	public List<IngredientHttpEntity> transformIngredientsToIngredientHttpEntities(List<Ingredient> ingredients) {
 		List<IngredientHttpEntity> entities = new ArrayList<>();
 		for(Ingredient i: ingredients) {

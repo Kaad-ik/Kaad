@@ -10,9 +10,19 @@ import hu.elte.recipe.entities.Food;
 import hu.elte.recipe.entities.httpentities.FoodHttpEntity;
 import hu.elte.recipe.entities.httpentities.IngredientHttpEntity;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FoodTransformer.
+ */
 @Component
 public class FoodTransformer {
 
+    /**
+     * Transform food to fodd http entity.
+     *
+     * @param food the food
+     * @return the food http entity
+     */
     public FoodHttpEntity transformFoodToFoddHttpEntity(Food food) {
     	FoodHttpEntity foodHttpEntity = new FoodHttpEntity();
        	foodHttpEntity.setId(food.getId());
@@ -24,6 +34,12 @@ public class FoodTransformer {
         return foodHttpEntity;
     }  
     
+    /**
+     * Transform foods to food http entities.
+     *
+     * @param foods the foods
+     * @return the list
+     */
     public List<FoodHttpEntity> transformFoodsToFoodHttpEntities(List<Food> foods) {
     	List<FoodHttpEntity> foodHttpEntities = new ArrayList<>();
     	for(Food f: foods) {

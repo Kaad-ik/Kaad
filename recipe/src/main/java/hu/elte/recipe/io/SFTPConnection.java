@@ -11,23 +11,53 @@ import org.springframework.core.io.Resource;
 import java.io.*;
 import java.util.Properties;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SFTPConnection.
+ */
 public class SFTPConnection {
 
+    /** The Constant SERVER_IMAGES_URL. */
     private static final String SERVER_IMAGES_URL = "images";
+    
+    /** The Constant SFTP. */
     private static final String SFTP = "sftp";
+    
+    /** The Constant config. */
     private static final Properties config = new Properties();
     static {
         config.put("StrictHostKeyChecking","no");
     }
 
+    /** The client. */
     private final JSch client = new JSch();
+    
+    /** The session. */
     private Session session;
+    
+    /** The channel sftp. */
     private ChannelSftp channelSftp;
+    
+    /** The url. */
     private String url;
+    
+    /** The port. */
     private int port;
+    
+    /** The username. */
     private String username;
+    
+    /** The password. */
     private String password;
 
+    /**
+     * Instantiates a new SFTP connection.
+     *
+     * @param url the url
+     * @param port the port
+     * @param username the username
+     * @param password the password
+     */
     public SFTPConnection(String url, int port, String username, String password) {
         this.url = url;
         this.port = port;
@@ -35,10 +65,22 @@ public class SFTPConnection {
         this.password = password;
     }
 
+    /**
+     * Generate random file name.
+     *
+     * @return the string
+     */
     private String generateRandomFileName(){
         return RandomStringUtils.randomAlphabetic(10);
     }
 
+    /**
+     * Connect.
+     *
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws JSchException the j sch exception
+     * @throws SftpException the sftp exception
+     */
     private void connect() throws IOException, JSchException, SftpException {
         session = client.getSession(username, url, port);
         session.setPassword(password);
@@ -49,6 +91,11 @@ public class SFTPConnection {
         channelSftp.cd(SERVER_IMAGES_URL);
     }
 
+    /**
+     * Disconnect.
+     *
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private void disconnect() throws IOException {
         try{
             session.disconnect();
@@ -58,6 +105,15 @@ public class SFTPConnection {
         }
     }
 
+    /**
+     * Upload.
+     *
+     * @param fileInputStream the file input stream
+     * @return the string
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws JSchException the j sch exception
+     * @throws SftpException the sftp exception
+     */
     public String upload(InputStream fileInputStream) throws IOException, JSchException, SftpException {
             connect();
             String randomFileName = "";
@@ -73,6 +129,14 @@ public class SFTPConnection {
             return randomFileName;
     }
 
+    /**
+     * Download.
+     *
+     * @param fileName the file name
+     * @return the byte[]
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws JSchException the j sch exception
+     */
     public byte[] download(String fileName) throws IOException, JSchException{
         try {
             connect();
@@ -85,6 +149,12 @@ public class SFTPConnection {
         }
     }
 
+    /**
+     * Default image.
+     *
+     * @return the byte[]
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     private byte[] defaultImage() throws IOException {
         Resource resource = new ClassPathResource("default.jpg");
         return IOUtils.toByteArray(resource.getInputStream());

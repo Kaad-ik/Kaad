@@ -7,8 +7,17 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * The Interface BusinessRole.
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface BusinessRole {
+    
+    /**
+     * Value.
+     *
+     * @return the role[]
+     */
     Role[] value() default {Role.GUEST};
 }

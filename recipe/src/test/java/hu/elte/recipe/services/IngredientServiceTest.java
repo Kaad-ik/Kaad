@@ -19,34 +19,54 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class IngredientServiceTest.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class IngredientServiceTest {
 
+    /** The Constant TYPE_1. */
     private static final IngredientType TYPE_1 = new IngredientType("cukor",1, Currency.HUF);
+    
+    /** The Constant REQUEST_ENTITY. */
     private static final IngredientHttpEntity REQUEST_ENTITY =
             new IngredientHttpEntity("cukor", 4, IngredientUnitType.CSIPET);
 
+    /** The mocks collector. */
     private final MocksCollector mocksCollector = new MocksCollector();
 
+    /** The ingredient repository mock. */
     @Mock
     private IngredientRepository ingredientRepositoryMock;
 
+    /** The ingredient type service mock. */
     @Mock
     private IngredientTypeService ingredientTypeServiceMock;
 
+    /** The ingredient service. */
     @InjectMocks
     private IngredientService ingredientService;
 
+    /**
+     * Setup.
+     */
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }
 
+    /**
+     * Tear down.
+     */
     @After
     public void tearDown() {
         verifyNoMoreInteractions(mocksCollector.getMocks());
     }
 
+    /**
+     * Should add ingredient by http entity.
+     */
     @Test
     public void shouldAddIngredientByHttpEntity(){
        Ingredient expected = new Ingredient(TYPE_1,null, 4, IngredientUnitType.CSIPET);

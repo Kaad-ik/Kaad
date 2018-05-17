@@ -16,22 +16,45 @@ import hu.elte.recipe.exceptions.UserNotValidException;
 import hu.elte.recipe.exceptions.DuplicationException;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserService.
+ */
 @Service
 public class UserService {
 
+    /** The Constant USERNAME_DUPLICATED_MESSAGE. */
     private static final String USERNAME_DUPLICATED_MESSAGE = "The user with that username already exists.";
 
+    /** The user repository. */
     @Autowired private UserRepository userRepository;
+    
+    /** The ingredient repository. */
     @Autowired private IngredientRepository ingredientRepository;
 
+	/** The actual user. */
 	private User actualUser;
 
+	/**
+	 * Instantiates a new user service.
+	 */
 	public UserService() {}
 
+    /**
+     * Gets the all user.
+     *
+     * @return the all user
+     */
     public Iterable<User> getAllUser(){
         return userRepository.findAll();
     }
 
+    /**
+     * Update user.
+     *
+     * @param user the user
+     * @return the user
+     */
     public User updateUser(UserHttpEntity user){
         User current = userRepository.findOne(user.getId());
         current.setUserName(user.getUserName());
@@ -48,6 +71,12 @@ public class UserService {
         }
     }
 
+    /**
+     * Update user.
+     *
+     * @param user the user
+     * @return the user
+     */
     public User updateUser(User user){
         actualUser.setUserName(user.getUserName());
         actualUser.setMoney(user.getMoney());
@@ -61,16 +90,34 @@ public class UserService {
         }
     }
 
+    /**
+     * Delete user.
+     *
+     * @param id the id
+     */
     public void deleteUser(Long id){
         if(!isAdmin(id)){
             userRepository.delete(id);
         }
     }
 
+    /**
+     * Checks if is admin.
+     *
+     * @param id the id
+     * @return true, if is admin
+     */
     private boolean isAdmin(Long id) {
        return userRepository.findOne(id).getRole() == Role.ADMIN;
     }
 
+    /**
+     * Login.
+     *
+     * @param user the user
+     * @return the user
+     * @throws UserNotValidException the user not valid exception
+     */
     public User login(User user) throws UserNotValidException {
         if (isValid(user)) {
             return this.actualUser = userRepository.findByUserName(user.getUserName()).get();
@@ -78,6 +125,12 @@ public class UserService {
         throw new UserNotValidException();
     }
 
+    /**
+     * Register.
+     *
+     * @param entity the entity
+     * @return the user
+     */
     public User register(UserHttpEntity entity) {
         User user = new User(entity);
         try{
@@ -93,10 +146,21 @@ public class UserService {
         }
     }
 
+    /**
+     * Checks if is valid.
+     *
+     * @param user the user
+     * @return true, if is valid
+     */
     private boolean isValid(User user) {
         return userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword()).isPresent();
     }
 
+	/**
+	 * Logout.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean logout() {
 		if (actualUser == null) {
 			return false;
@@ -105,14 +169,29 @@ public class UserService {
 		return true;
 	}
 
+	/**
+	 * Checks if is logged in.
+	 *
+	 * @return true, if is logged in
+	 */
 	public boolean isLoggedIn() {
 		return actualUser != null;
 	}
 
+	/**
+	 * Gets the actual user.
+	 *
+	 * @return the actual user
+	 */
 	public User getActualUser() {
 		return actualUser;
 	}
 	
+	/**
+	 * Cook.
+	 *
+	 * @param food the food
+	 */
 	void cook(Food food) {
        for(Ingredient ingredient : actualUser.getIngredients()){
            if(food.getIngredients().stream().anyMatch(i -> i.getType().equals(ingredient.getType()))){
@@ -125,6 +204,12 @@ public class UserService {
        updateUser(getActualUser());
     } 
 
+    /**
+     * Adds the.
+     *
+     * @param user the user
+     * @return the user
+     */
     public User add(User user) {
         try{
             user.setRole(Role.USER);
@@ -134,14 +219,24 @@ public class UserService {
         }
     }
 
+    /**
+     * Change password.
+     *
+     * @param newpassword the newpassword
+     */
     public void changepassword(String newpassword) {
         actualUser.setPassword(newpassword);
         userRepository.save(actualUser);
     }
     
-    public void deleteIngredient(Long id) {
-    	Ingredient ingredient = ingredientRepository.findOne(id);
-    	actualUser.deleteIngredient(ingredient);
+    /**
+     * Delete ingredient.
+     *
+     * @param id the id
+     */
+  public void deleteIngredient(Long id) {
+    Ingredient ingredient = ingredientRepository.findOne(id);
+    actualUser.deleteIngredient(ingredient);
     	userRepository.save(actualUser);
     	ingredientRepository.delete(ingredient);
     }
