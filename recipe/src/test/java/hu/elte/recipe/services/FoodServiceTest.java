@@ -2,10 +2,7 @@ package hu.elte.recipe.services;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import junit.framework.Assert;
@@ -100,8 +97,8 @@ public class FoodServiceTest {
     	FOODHTTPENTITIES.add(getHttpEntity("kaja1", "kaja1.jpg", INGREDIENTS_1));
     }
     
-        /** The mocks collector. */
-        private final MocksCollector mocksCollector = new MocksCollector();
+    /** The mocks collector. */
+    private final MocksCollector mocksCollector = new MocksCollector();
 
     /** The food repository mock. */
     @Mock
@@ -113,7 +110,10 @@ public class FoodServiceTest {
 
     /** The user service mock. */
     @Mock
-	private UserService userServiceMock;
+	  private UserService userServiceMock;
+
+    @Mock
+	  private IngredientService ingredientServiceMock;
     
     /** The food service. */
     @InjectMocks
@@ -192,10 +192,17 @@ public class FoodServiceTest {
 	public void shouldUpdateExistingFood(){
 		when(foodRepositoryMock.findOne(ID)).thenReturn(FOOD_1);
 		when(foodRepositoryMock.save(FOOD_1)).thenReturn(FOOD_1);
-		Food actual = foodService.updateFood(ID, getHttpEntity("kaja1", "kaja1.jpg", INGREDIENTS_1));
+		when(ingredientServiceMock.addIngredientByHttpEntity(
+				new IngredientHttpEntity(new Ingredient(TYPE_1, null, 69, DB))))
+				.thenReturn(new Ingredient(TYPE_1, null, 69, DB));
+		Food actual = foodService.updateFood(ID,
+				getHttpEntity("kaja1", "kaja1.jpg",
+						Arrays.asList(new Ingredient(TYPE_1, null, 69, DB))));
 		Assert.assertEquals(FOOD_1, actual);
 		verify(foodRepositoryMock).findOne(ID);
 		verify(foodRepositoryMock).save(FOOD_1);
+		verify(ingredientServiceMock).addIngredientByHttpEntity(
+				new IngredientHttpEntity(new Ingredient(TYPE_1, null, 69, DB)));
 	}
 
 	@Test(expected = DuplicationException.class)
@@ -226,8 +233,12 @@ public class FoodServiceTest {
         foodHttpEntity.setName(name);
         foodHttpEntity.setImgUrl(imgurl);
         if(ingredients != null) {
-            foodHttpEntity.setIngredients(ingredients.stream().map(IngredientHttpEntity::new).collect(Collectors.toSet()));        	
+            foodHttpEntity.setIngredients(toHttpEntity(ingredients));
         }
         return foodHttpEntity;
+	}
+
+	private static Set<IngredientHttpEntity> toHttpEntity(List<Ingredient> ingredients){
+    	return ingredients.stream().map(IngredientHttpEntity::new).collect(Collectors.toSet());
 	}
 }
