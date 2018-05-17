@@ -149,23 +149,6 @@ public class FoodServiceTest {
     	verify(foodRepositoryMock).findAll();
     	verify(foodTransformerMock).transformFoodsToFoodHttpEntities(FOODS);
     }
-    
-    /**
-     * Should throw duplication exception when some error occurs on insertion.
-     */
-    @Test(expected = DuplicationException.class)
-    public void shouldThrowDuplicationExceptionWhenSomeErrorOccursOnInsertion() {
-    	FoodHttpEntity request = getHttpEntity("kaja1", "kaja1.jpg", INGREDIENTS_1);
-        Food food = new Food(request.getName(), request.getImgUrl(), INGREDIENTS_1, "some recipe description");
-
-    	when(foodRepositoryMock.save(food)).thenThrow(new RuntimeException());
-    	try {
-    		foodService.addFood(request);
-    	}catch(DuplicationException e) {
-    		assertEquals("Unique key duplicated", e.getMessage());
-    		throw e;
-    	}
-    }
 
 	/**
 	 * Should find one food by ID.
