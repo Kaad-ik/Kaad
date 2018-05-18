@@ -185,5 +185,11 @@ public class IngredientHttpEntity {
   public void setCurrency(Currency currency) {
     this.currency = currency;
   }
+
+  @Override
+  public String toString() {
+    return "IngredientHttpEntity [id=" + id + ", name=" + name + ", price=" + price + ", quantity="
+        + quantity + ", unit=" + unit + ", userId=" + userId + ", currency=" + currency + "]";
+  }
     
 }

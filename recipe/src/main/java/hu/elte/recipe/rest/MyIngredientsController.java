@@ -76,50 +76,55 @@ public class MyIngredientsController {
 		return new IngredientTypeModel(ingredientTypeService.getAllIngredientTypeName());
 	}
 	
-	/**
-	 * Show my ingredients.
-	 *
-	 * @param model the model
-	 * @return the model and view
-	 */
-	@RequestMapping(value = "user/my-ingredients.html", method = RequestMethod.GET)
-	public ModelAndView showMyIngredients(Model model) {
-		Hibernate.initialize(userService.getActualUser().getIngredients());
-		List<IngredientHttpEntity> ingredients = ingredientTransformer.transformIngredientsToIngredientHttpEntities(userService.getActualUser().getIngredients());
-		model.addAttribute("ingredients", ingredients);
-		model.addAttribute("ingredient", new IngredientHttpEntity());
-		return new ModelAndView("my_ingredients");
-	}
-	
-	/**
-	 * Removes the food.
-	 *
-	 * @param id the id
-	 * @return the model and view
-	 */
-	@RequestMapping(value = "user/deleteIngredient", method = RequestMethod.GET)
-	public ModelAndView removeFood(@RequestParam("id") Long id) {
-		System.out.println(id);
-		userService.deleteIngredient(id);
-		return new ModelAndView("redirect:details.html");
-	}
-	
-	/**
-	 * Save ingredient.
-	 *
-	 * @param ingredient the ingredient
-	 * @param bindingResult the binding result
-	 * @param redirectAttributes the redirect attributes
-	 * @return the model and view
-	 */
-	@RequestMapping(value = "user/saveIngredient", method = RequestMethod.POST)
-	public ModelAndView saveIngredient(@ModelAttribute("ingredient") IngredientHttpEntity ingredient, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-		if(!bindingResult.hasErrors()) {
-			ingredientService.addIngredientByHttpEntity(ingredient);
-			redirectAttributes.addFlashAttribute("message", "Ingredient successfully saved.");
-		} else {
-			redirectAttributes.addFlashAttribute("message", "The data provided was not appropriate, so the update failed.");
-		}
-		return new ModelAndView("redirect:my-ingredients.html");
-	}
+  /**
+   * Show my ingredients.
+   *
+   * @param model the model
+   * @return the model and view
+   */
+  @RequestMapping(value = "user/my-ingredients.html", method = RequestMethod.GET)
+  public ModelAndView showMyIngredients(Model model) {
+    Hibernate.initialize(userService.getActualUser().getIngredients());
+    List<IngredientHttpEntity> ingredients =
+        ingredientTransformer.transformIngredientsToIngredientHttpEntities(
+            userService.getActualUser().getIngredients());
+    model.addAttribute("ingredients", ingredients);
+    model.addAttribute("ingredient", new IngredientHttpEntity());
+    return new ModelAndView("my_ingredients");
+  }
+
+  /**
+   * Removes the food.
+   *
+   * @param id the id
+   * @return the model and view
+   */
+  @RequestMapping(value = "user/deleteIngredient", method = RequestMethod.GET)
+  public ModelAndView removeFood(@RequestParam("id") Long id) {
+    System.out.println(id);
+    userService.deleteIngredient(id);
+    return new ModelAndView("redirect:details.html");
+  }
+
+  /**
+   * Save ingredient.
+   *
+   * @param ingredient the ingredient
+   * @param bindingResult the binding result
+   * @param redirectAttributes the redirect attributes
+   * @return the model and view
+   */
+  @RequestMapping(value = "user/saveIngredient", method = RequestMethod.POST)
+  public ModelAndView saveIngredient(@ModelAttribute("ingredient") IngredientHttpEntity ingredient,
+      BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    if (!bindingResult.hasErrors()) {
+      ingredient.setUserId(userService.getActualUser().getId());
+      ingredientService.addIngredientByHttpEntity(ingredient);
+      redirectAttributes.addFlashAttribute("message", "Ingredient successfully saved.");
+    } else {
+      redirectAttributes.addFlashAttribute("message", 
+          "The data provided was not appropriate, so the update failed.");
+    }
+    return new ModelAndView("redirect:my-ingredients.html");
+  }
 }
