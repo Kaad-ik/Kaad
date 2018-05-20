@@ -3,6 +3,7 @@ package hu.elte.recipe.services;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -68,7 +69,7 @@ public class UserService {
         try{
         	actualUser = current;
             return userRepository.save(current);
-        }catch (Exception e){
+        }catch (DuplicateKeyException e){
             throw new DuplicationException(USERNAME_DUPLICATED_MESSAGE);
         }
     }
@@ -87,7 +88,7 @@ public class UserService {
         actualUser.setRole(user.getRole());
         try{
             return userRepository.save(actualUser);
-        }catch (Exception e){
+        }catch (DuplicateKeyException e){
             throw new DuplicationException(USERNAME_DUPLICATED_MESSAGE);
         }
     }
@@ -143,7 +144,7 @@ public class UserService {
             user.setEmail(entity.getEmail());
             this.actualUser = userRepository.save(user);
             return user;
-        }catch (Exception e){
+        }catch (DuplicateKeyException e){
             throw new DuplicationException(USERNAME_DUPLICATED_MESSAGE);
         }
     }

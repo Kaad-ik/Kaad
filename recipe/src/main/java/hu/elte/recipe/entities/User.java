@@ -310,6 +310,7 @@ public class User {
   public User(UserHttpEntity entity) {
     this.userName = entity.getUserName();
     this.password = entity.getPassword();
+    this.cooked = new ArrayList<>();
   }
 
   /* (non-Javadoc)
