@@ -198,17 +198,15 @@ public class Ingredient {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, owner, quantity, unit);
+    return Objects.hash(id, quantity, unit);
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString() {
-    return "Ingredient [id=" + id + ", type=" + type + ", owner=" + owner + ", quantity=" + quantity
-        + ", unit=" + unit + "]";
+    return "Ingredient{" +
+            "id=" + id +
+            ", quantity=" + quantity +
+            ", unit=" + unit +
+            '}';
   }
-  
-  
 }
