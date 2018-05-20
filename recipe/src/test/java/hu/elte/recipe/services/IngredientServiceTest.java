@@ -69,9 +69,8 @@ public class IngredientServiceTest {
     /**
      * Should add ingredient by http entity.
      */
-    @Ignore
-    @Test
-    public void shouldAddIngredientByHttpEntity(){
+/*    @Test
+    public void shouldAddIngredientByHttpEntity() {
        Ingredient expected = new Ingredient(TYPE_1,null, 4, IngredientUnitType.CSIPET);
        when(ingredientTypeServiceMock.getByName(REQUEST_ENTITY.getName())).thenReturn(Optional.of(TYPE_1));
        when(ingredientRepositoryMock.save(expected)).thenReturn(expected);
@@ -80,5 +79,5 @@ public class IngredientServiceTest {
        verify(ingredientTypeServiceMock).getByName(REQUEST_ENTITY.getName());
        verify(ingredientRepositoryMock).save(expected);
     }
-
+*/
 }
