@@ -94,27 +94,6 @@ public class UserService {
     }
 
     /**
-     * Delete user.
-     *
-     * @param id the id
-     */
-    public void deleteUser(Long id){
-        if(!isAdmin(id)){
-            userRepository.delete(id);
-        }
-    }
-
-    /**
-     * Checks if is admin.
-     *
-     * @param id the id
-     * @return true, if is admin
-     */
-    private boolean isAdmin(Long id) {
-       return userRepository.findOne(id).getRole() == Role.ADMIN;
-    }
-
-    /**
      * Login.
      *
      * @param user the user
@@ -205,33 +184,8 @@ public class UserService {
            }
        }
        updateUser(getActualUser());
-    } 
-
-    /**
-     * Adds the.
-     *
-     * @param user the user
-     * @return the user
-     */
-    public User add(User user) {
-        try{
-            user.setRole(Role.USER);
-            return userRepository.save(user);
-        }catch (Exception e){
-            throw new DuplicationException(USERNAME_DUPLICATED_MESSAGE);
-        }
     }
 
-    /**
-     * Change password.
-     *
-     * @param newpassword the newpassword
-     */
-    public void changepassword(String newpassword) {
-        actualUser.setPassword(newpassword);
-        userRepository.save(actualUser);
-    }
-    
   /**
    * Delete ingredient.
    *

@@ -92,43 +92,12 @@ public class FoodService {
     }
 
     /**
-     * Update food.
-     *
-     * @param id the id
-     * @param entity the entity
-     * @return the food
-     */
-    public Food updateFood(Long id, FoodHttpEntity entity){
-        try{
-        Food current = foodRepository.findOne(id);
-        current.setName(entity.getName());
-        current.setImgUrl(entity.getImgUrl());
-        current.setRecipe(entity.getRecipe());
-        current.setIngredients(mapHttpEntities(entity.getIngredients()));
-            return foodRepository.save(current);
-        }catch (DuplicateKeyException e){
-            throw new DuplicationException("Unique key duplicated");
-        }
-    }
-
-    /**
      * Delete food.
      *
      * @param id the id
      */
     public void deleteFood(Long id){
         foodRepository.delete(id);
-    }
-
-
-    /**
-     * Gets the foods by ingredient https entities.
-     *
-     * @param ingredients the ingredients
-     * @return the foods by ingredient https entities
-     */
-    public Iterable<Food> getFoodsByIngredientHttpsEntities(List<IngredientHttpEntity> ingredients){
-        return getFoodsByIngredients(mapHttpEntities(ingredients));
     }
 
     /**
@@ -196,15 +165,6 @@ public class FoodService {
     private List<Ingredient> mapHttpEntities(Collection<IngredientHttpEntity> entities){
         return entities.stream()
                 .map(ing -> ingredientService.addIngredientByHttpEntity(ing)).collect(Collectors.toList());
-    }
-
-    /**
-     * Cook.
-     *
-     * @param name the name
-     */
-    public void cook(String name){
-        cook(foodRepository.findByName(name).get().getId());
     }
 
     /**

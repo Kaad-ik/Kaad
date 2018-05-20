@@ -1,10 +1,9 @@
 package hu.elte.recipe.services;
 
-import hu.elte.recipe.entities.Currency;
-import hu.elte.recipe.entities.Role;
-import hu.elte.recipe.entities.User;
+import hu.elte.recipe.entities.*;
 import hu.elte.recipe.entities.httpentities.UserHttpEntity;
 import hu.elte.recipe.exceptions.DuplicationException;
+import hu.elte.recipe.repositories.IngredientRepository;
 import hu.elte.recipe.repositories.UserRepository;
 import org.junit.After;
 import org.junit.Assert;
@@ -18,12 +17,12 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.dao.DuplicateKeyException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
@@ -33,12 +32,16 @@ public class UserServiceTest {
     private static final String PASSWORD = "password";
     private static final User USER = new User();
     private static final UserHttpEntity USER_HTTP_ENTITY = new UserHttpEntity();
+    private static final IngredientType TYPE_1 = new IngredientType("cukor",1, Currency.HUF);
+    private static final Ingredient INGREDIENT = new Ingredient(TYPE_1,USER, 4, IngredientUnitType.CSIPET);
+
     static{
         USER.setUserName(USERNAME);
         USER.setPassword(PASSWORD);
         USER.setRole(Role.USER);
         USER.setMoney(0);
         USER.setCurrency(Currency.HUF);
+        USER.addIngredient(INGREDIENT);
 
         USER_HTTP_ENTITY.setUserName(USERNAME);
         USER_HTTP_ENTITY.setPassword(PASSWORD);
@@ -49,6 +52,9 @@ public class UserServiceTest {
 
     @Mock
     private UserRepository userRepositoryMock;
+
+    @Mock
+    private IngredientRepository ingredientRepositoryMock;
 
     /** The mocks collector. */
     private final MocksCollector mocksCollector = new MocksCollector();
@@ -71,13 +77,11 @@ public class UserServiceTest {
 
     @Test
     public void shouldLogin(){
-        when(userRepositoryMock.findByUserNameAndPassword(USERNAME, PASSWORD)).thenReturn(Optional.of(USER));
-        when(userRepositoryMock.findByUserName(USERNAME)).thenReturn(Optional.of(USER));
+        mockLogin();
         User actual = userService.login(USER);
         assertEquals(USER, actual);
         assertEquals(USER, userService.getActualUser());
-        verify(userRepositoryMock).findByUserNameAndPassword(USERNAME, PASSWORD);
-        verify(userRepositoryMock).findByUserName(USERNAME);
+        verifyLogin();
     }
 
     @Test
@@ -90,30 +94,55 @@ public class UserServiceTest {
 
     @Test
     public void shouldUpdateUser(){
-        when(userRepositoryMock.findByUserNameAndPassword(USERNAME, PASSWORD)).thenReturn(Optional.of(USER));
-        when(userRepositoryMock.findByUserName(USERNAME)).thenReturn(Optional.of(USER));
+        mockLogin();
         when(userRepositoryMock.save(USER)).thenReturn(USER);
-        userService.login(USER);
+        login();
         User actual = userService.updateUser(USER);
         assertEquals(USER, actual);
         verify(userRepositoryMock).save(USER);
-        verify(userRepositoryMock).findByUserNameAndPassword(USERNAME, PASSWORD);
-        verify(userRepositoryMock).findByUserName(USERNAME);
+        verifyLogin();
     }
 
     @Test(expected = DuplicationException.class)
     public void shouldThrowDuplicationExceptionWhenUserDuplicatedOnUpdate(){
-        when(userRepositoryMock.findByUserNameAndPassword(USERNAME, PASSWORD)).thenReturn(Optional.of(USER));
-        when(userRepositoryMock.findByUserName(USERNAME)).thenReturn(Optional.of(USER));
+        mockLogin();
         when(userRepositoryMock.save(USER)).thenThrow(new DuplicateKeyException(""));
-        userService.login(USER);
+        login();
         try{
             userService.updateUser(USER);
         }catch (DuplicationException e){
             verify(userRepositoryMock).save(USER);
-            verify(userRepositoryMock).findByUserNameAndPassword(USERNAME, PASSWORD);
-            verify(userRepositoryMock).findByUserName(USERNAME);
+            verifyLogin();
             throw e;
         }
+    }
+
+    @Test
+    public void shouldDeleteIngredients(){
+        mockLogin();
+        when(ingredientRepositoryMock.findOne(ID)).thenReturn(INGREDIENT);
+        when(userRepositoryMock.save(USER)).thenReturn(USER);
+        doNothing().when(ingredientRepositoryMock).delete(INGREDIENT);
+        login();
+        userService.deleteIngredient(ID);
+        assertEquals(Collections.emptyList(), USER.getIngredients());
+        verify(ingredientRepositoryMock).findOne(ID);
+        verify(userRepositoryMock).save(USER);
+        verify(ingredientRepositoryMock).delete(INGREDIENT);
+        verifyLogin();
+    }
+
+    private void mockLogin(){
+        when(userRepositoryMock.findByUserNameAndPassword(USERNAME, PASSWORD)).thenReturn(Optional.of(USER));
+        when(userRepositoryMock.findByUserName(USERNAME)).thenReturn(Optional.of(USER));
+    }
+
+    private void login(){
+        userService.login(USER);
+    }
+
+    private void verifyLogin(){
+        verify(userRepositoryMock).findByUserNameAndPassword(USERNAME, PASSWORD);
+        verify(userRepositoryMock).findByUserName(USERNAME);
     }
 }
