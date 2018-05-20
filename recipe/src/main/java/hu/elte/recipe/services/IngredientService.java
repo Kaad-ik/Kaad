@@ -36,7 +36,7 @@ public class IngredientService {
    * @return the ingredient
    */
   private Ingredient addIngredient(Ingredient ingredient) {
-    //userService.updateUser(ingredient.getOwner());
+    userService.updateUser(ingredient.getOwner());
     return ingredientRepository.save(ingredient);
   }
 
@@ -48,11 +48,11 @@ public class IngredientService {
    */
   public Ingredient addIngredientByHttpEntity(IngredientHttpEntity entity) {
     IngredientType type = ingredientTypeService.getByName(entity.getName()).get();
-    //User user = userService.getActualUser();
-    //Ingredient ingredient = new Ingredient(type, user, entity.getQuantity(), entity.getUnit());
-    //user.addIngredient(ingredient);
-    //return addIngredient(ingredient);
-    return addIngredient(new Ingredient(type, null, entity.getQuantity(), entity.getUnit()));
+    User user = userService.getActualUser();
+    Ingredient ingredient = new Ingredient(type, user, entity.getQuantity(), entity.getUnit());
+    user.addIngredient(ingredient);
+    return addIngredient(ingredient);
+    //return addIngredient(new Ingredient(type, null, entity.getQuantity(), entity.getUnit()));
   }
   
   /**
@@ -64,6 +64,21 @@ public class IngredientService {
     Ingredient ing = ingredientRepository.findOne(id);
     System.out.println(ing.toString());
     int q = ing.getQuantity() + 1;
+    ing.setQuantity(q);
+    System.out.println(ing.toString());
+    ing.setOwner(userService.getActualUser());
+    ingredientRepository.save(ing);
+  }
+  
+  /**
+   * Decrease ingredient.
+   *
+   * @param id the id
+   */
+  public void decreaseIngredient(Long id) {
+    Ingredient ing = ingredientRepository.findOne(id);
+    System.out.println(ing.toString());
+    int q = ing.getQuantity() - 1;
     ing.setQuantity(q);
     System.out.println(ing.toString());
     ing.setOwner(userService.getActualUser());

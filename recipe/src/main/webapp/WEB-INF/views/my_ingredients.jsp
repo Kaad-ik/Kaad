@@ -47,13 +47,14 @@
 				<h4>Ingredients</h4>
 				<table id="foods-table" class="table-style">
 					<tr class="th-style">
-						<th></th><th>#</th><th>Ingredient name</th><th>Quantity</th><th>Unit</th><th>Price</th><th>Currency</th><th>Increase</th><th>Decrease</th>
+						<th>#</th><th>Ingredient name</th><th>Quantity</th><th>Unit</th><th>Price</th><th>Currency</th><th>Increase</th><th>Decrease</th>
 					</tr>
 					<c:forEach var="ingredient" items="${ingredients}" varStatus="loopCounter">
 					<tr class="td-style">
-						<td><a id="remove-button" class="btn btn-default btn-xs" alt="Remove" href='deleteIngredient?id=<c:out value="${ingredient.id}"/>'>Remove</a>
-						</td><th>${loopCounter.count} ${ingredient.id}</th><td>${ingredient.name}</td><td>${ingredient.quantity}</td><td>${ingredient.unit}</td><td>${ingredient.price}</td><th>${ingredient.currency}</th>
-						<td><a id="increase-button" class="btn btn-default btn-xs" alt="Increase" href='increaseIngredient?id=<c:out value="${ingredient.id}" />'>+</a>
+<!-- 						<td><a id="remove-button" class="btn btn-default btn-xs" alt="Remove" href='deleteIngredient?id=<c:out value="${ingredient.id}"/>'>Remove</a></td> -->
+						<th>${loopCounter.count}</th><td>${ingredient.name}</td><td>${ingredient.quantity}</td><td>${ingredient.unit}</td><td>${ingredient.price}</td><th>${ingredient.currency}</th>
+						<td><a id="increase-button" class="btn btn-default btn-xs" alt="Increase" href='increaseIngredient?id=<c:out value="${ingredient.id}" />'>+</a></td>
+						<td><a id="decrease-button" class="btn btn-default btn-xs" alt="Decrease" href='decreaseIngredient?id=<c:out value="${ingredient.id}" />'>-</a></td>
 					</tr>
 					</c:forEach>
 				</table>

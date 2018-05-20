@@ -30,11 +30,9 @@
 			    </div>
     			<ul class="nav navbar-nav">
     			  <li id="user" class="active"><a href="#">User details</a></li>
-    			  </li>
     			  <li id="my-foods"><a href="my-foods.html">My foods</a></li>
     			  <li id="my-ingredients"><a href="my-ingredients.html">My ingredients</a></li>
-    			  <li id="foods"><a href="foods.html">Foods</a></li>
-    			  </li>
+    			  <li id="foods"><a href="foods.html">All foods</a></li>
 			    </ul>
     			<ul class="nav navbar-nav navbar-right">
     			  <li><a href="logout">Logout</a></li>

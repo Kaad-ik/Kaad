@@ -30,10 +30,9 @@
 			    </div>
     			<ul class="nav navbar-nav">
     			  <li id="user"><a href="details.html">User details</a></li>
-    			  </li>
-    			  <li id="my-foods" class="active"><a href="#">My foods</a></li>
+    			  <li id="my-foods"><a href="my-foods.html">My foods</a></li>
+    			  <li id="my-ingredients"><a href="my-ingredients.html">My ingredients</a></li>
     			  <li id="foods"><a href="foods.html">All foods</a></li>
-    			  </li>
 			    </ul>
     			<ul class="nav navbar-nav navbar-right">
     			  <li><a href="logout">Logout</a></li>
@@ -42,16 +41,32 @@
 			</nav>
 		</header>
 		<main>
-			<section id="foods" class="container">
-				<h4>Food</h4>
-				<table id="foods-table" class="table-style">
-					<tr class="th-style">
-						<th></th><th>#</th><th>Food name</th><th>Image URL</th>
-					</tr>
-					<c:forEach var="food" items="${foods}" varStatus="loopCounter">
+			<section id="food" class="container"><section id="account-details" class="container">
+				<h4>${food.name}</h4>			
+				<table id="food-table" class="table-style">
 					<tr class="td-style">
-						<td><a id="remove-button" class="btn btn-default btn-xs" alt="Remove" href='deleteFood?id=<c:out value="${food.id}"/>'>Remove</a>
-						</td><th>${loopCounter.count}</th><td><a href='food/<c:out value="${food.id}"/>' >${food.name}</a></td><td><a href="${food.imgUrl}">${food.imgUrl}</a></td>
+						<th>Food name</th><td>${food.name}</td>
+					</tr>
+					<tr class="td-style">
+						<th>Image url</th><td><a href="${food.imgUrl}">${food.imgUrl}</a></td>
+					</tr>
+					<tr class="td-style">
+						<th>Recipe</th><td>${food.recipe}</td>
+					</tr>
+				</table>
+				<br>
+				<h4>Ingredients</h4>
+				<table id="ingredients" class="table-style">
+					<tr class="th-style">
+						<th>#</th><th>Name</th><th>Quantity</th><th>Unit</th><th>Price per gramms</th>
+					</tr>
+					<c:forEach var="ingredient" items="${food.ingredients}" varStatus="loopCounter">
+					<tr class="td-style">
+						<th>${loopCounter.count}</th>
+						<td>${ingredient.type.typeName}</td>
+						<td>${ingredient.quantity}</td>
+						<td>${ingredient.unit}</td>
+						<td>${ingredient.type.pricePerGramms}</td>
 					</tr>
 					</c:forEach>
 				</table>

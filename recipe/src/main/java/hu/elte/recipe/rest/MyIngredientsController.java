@@ -116,6 +116,18 @@ public class MyIngredientsController {
     ingredientService.increaseIngredient(id);
     return new ModelAndView("redirect:my-ingredients.html");
   }
+  
+  /**
+   * Decrease ingredient.
+  *
+  * @param id the id
+  * @return the model and view
+  */
+ @RequestMapping(value = "user/decreaseIngredient", method = RequestMethod.GET)
+ public ModelAndView decreaseIngredient(@RequestParam("id") Long id) {
+   ingredientService.increaseIngredient(id);
+   return new ModelAndView("redirect:my-ingredients.html");
+ }
 
   /**
    * Save ingredient.
