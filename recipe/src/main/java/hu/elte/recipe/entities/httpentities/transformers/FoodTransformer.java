@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FoodTransformer.
  */
@@ -46,7 +45,7 @@ public class FoodTransformer {
     List<Long> ids = foods.stream().map(f -> f.getId()).distinct().collect(Collectors.toList());
     System.out.println("IDS: " + ids.size());
     List<Food> distinctFoods = new ArrayList<>();
-    for(Long id: ids) {
+    for (Long id: ids) {
       distinctFoods.add(foods.stream().filter(f -> f.getId().equals(id)).findFirst().get());
     }
     for (Food f: distinctFoods) {

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserDetailsController.
  */
@@ -49,7 +48,8 @@ public class UserDetailsController {
    */
   @RequestMapping(value = "user/details.html", method = RequestMethod.GET)
   public ModelAndView showUserDetails(Model model) {
-    UserHttpEntity user = userTransformer.transformUserToUserHttpEntity(userService.getActualUser());
+    UserHttpEntity user = userTransformer
+        .transformUserToUserHttpEntity(userService.getActualUser());
     model.addAttribute("user", user);
     return new ModelAndView("user");
   }
@@ -63,12 +63,14 @@ public class UserDetailsController {
    * @return the model and view
    */
   @RequestMapping(value = "user/updateUser", method = RequestMethod.POST)
-  public ModelAndView updateUserDetails(@ModelAttribute("user") UserHttpEntity user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-    if(!bindingResult.hasErrors()) {
+  public ModelAndView updateUserDetails(@ModelAttribute("user") UserHttpEntity user,
+      BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    if (!bindingResult.hasErrors()) {
       userTransformer.transformUserToUserHttpEntity(userService.updateUser(user));
       redirectAttributes.addFlashAttribute("message", "User successfully updated.");
     } else {
-      redirectAttributes.addFlashAttribute("message", "The data provided was not appropriate, so the update failed.");
+      redirectAttributes.addFlashAttribute("message",
+          "The data provided was not appropriate, so the update failed.");
     }
     return new ModelAndView("redirect:details.html");
   }

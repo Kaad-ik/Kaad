@@ -3,7 +3,6 @@ package hu.elte.recipe.entities.httpentities;
 import hu.elte.recipe.entities.Currency;
 import hu.elte.recipe.entities.Role;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserHttpEntity.
  */

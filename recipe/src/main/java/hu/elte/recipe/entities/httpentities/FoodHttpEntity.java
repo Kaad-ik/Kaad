@@ -2,7 +2,6 @@ package hu.elte.recipe.entities.httpentities;
 
 import java.util.Set;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class FoodHttpEntity.
  */

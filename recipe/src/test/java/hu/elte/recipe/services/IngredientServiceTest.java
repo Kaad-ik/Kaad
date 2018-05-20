@@ -30,13 +30,23 @@ public class IngredientServiceTest {
 
     /** The Constant TYPE_1. */
     private static final IngredientType TYPE_1 = new IngredientType("cukor",1, Currency.HUF);
+    
+    /** The Constant ID. */
     private static final long ID = 1L;
     /** The Constant REQUEST_ENTITY. */
     private static final IngredientHttpEntity REQUEST_ENTITY =
             new IngredientHttpEntity("cukor", 4, IngredientUnitType.CSIPET);
+    
+    /** The Constant USER. */
     private static final User USER = new User();
+    
+    /** The Constant INGREDIENT. */
     private static final Ingredient INGREDIENT = new Ingredient(TYPE_1,USER, 4, IngredientUnitType.CSIPET);
+    
+    /** The Constant INGREDIENT_INC. */
     private static final Ingredient INGREDIENT_INC = new Ingredient(TYPE_1,USER, 5, IngredientUnitType.CSIPET);
+    
+    /** The Constant INGREDIENT_DEC. */
     private static final Ingredient INGREDIENT_DEC = new Ingredient(TYPE_1,USER, 3, IngredientUnitType.CSIPET);
     static {
         USER.setUserName("usename");
@@ -54,6 +64,7 @@ public class IngredientServiceTest {
     @Mock
     private IngredientTypeService ingredientTypeServiceMock;
 
+    /** The user service mock. */
     @Mock
     private UserService userServiceMock;
 
@@ -77,6 +88,9 @@ public class IngredientServiceTest {
         verifyNoMoreInteractions(mocksCollector.getMocks());
     }
     
+    /**
+     * Dummy.
+     */
     @Test
     public void dummy() {}
 
@@ -97,6 +111,9 @@ public class IngredientServiceTest {
        verify(ingredientRepositoryMock).save(INGREDIENT);
     }
 
+    /**
+     * Should increase ingredient.
+     */
     @Test
     public void shouldIncreaseIngredient(){
         when(ingredientRepositoryMock.findOne(ID)).thenReturn(INGREDIENT);
@@ -111,6 +128,9 @@ public class IngredientServiceTest {
     }
 
 
+    /**
+     * Should decrease ingredient.
+     */
     @Test
     public void shouldDecreaseIngredient(){
         when(ingredientRepositoryMock.findOne(ID)).thenReturn(INGREDIENT);

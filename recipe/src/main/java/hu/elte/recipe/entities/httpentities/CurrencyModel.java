@@ -4,7 +4,6 @@ import hu.elte.recipe.entities.Currency;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CurrencyModel.
  */

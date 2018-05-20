@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class App.
  */
@@ -29,17 +28,11 @@ public class App extends WebMvcConfigurerAdapter {
     SpringApplication.run(App.class, args);
   }
 
-  /* (non-Javadoc)
-   * @see org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter#addInterceptors(org.springframework.web.servlet.config.annotation.InterceptorRegistry)
-   */
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(authInterceptor);
   }
 
-  /* (non-Javadoc)
-   * @see org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter#addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry)
-   */
   @Override
   public void addCorsMappings(CorsRegistry registry) {
     registry.addMapping("/**");

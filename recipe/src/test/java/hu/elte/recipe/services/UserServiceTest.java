@@ -23,16 +23,35 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserServiceTest.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
+    /** The Constant USERNAME_DUPLICATED_MESSAGE. */
     private static final String USERNAME_DUPLICATED_MESSAGE = "The user with that username already exists.";
+    
+    /** The Constant ID. */
     private static final long ID = 1L;
+    
+    /** The Constant USERNAME. */
     private static final String USERNAME = "username";
+    
+    /** The Constant PASSWORD. */
     private static final String PASSWORD = "password";
+    
+    /** The Constant USER. */
     private static final User USER = new User();
+    
+    /** The Constant USER_HTTP_ENTITY. */
     private static final UserHttpEntity USER_HTTP_ENTITY = new UserHttpEntity();
+    
+    /** The Constant TYPE_1. */
     private static final IngredientType TYPE_1 = new IngredientType("cukor",1, Currency.HUF);
+    
+    /** The Constant INGREDIENT. */
     private static final Ingredient INGREDIENT = new Ingredient(TYPE_1,USER, 4, IngredientUnitType.CSIPET);
 
     static{
@@ -47,12 +66,15 @@ public class UserServiceTest {
         USER_HTTP_ENTITY.setPassword(PASSWORD);
     }
 
+    /** The user service. */
     @InjectMocks
     private UserService userService;
 
+    /** The user repository mock. */
     @Mock
     private UserRepository userRepositoryMock;
 
+    /** The ingredient repository mock. */
     @Mock
     private IngredientRepository ingredientRepositoryMock;
 
@@ -75,6 +97,9 @@ public class UserServiceTest {
         verifyNoMoreInteractions(mocksCollector.getMocks());
     }
 
+    /**
+     * Should login.
+     */
     @Test
     public void shouldLogin(){
         mockLogin();
@@ -84,6 +109,9 @@ public class UserServiceTest {
         verifyLogin();
     }
 
+    /**
+     * Should return all users.
+     */
     @Test
     public void shouldReturnAllUsers(){
         when(userRepositoryMock.findAll()).thenReturn(Arrays.asList(USER));
@@ -92,6 +120,9 @@ public class UserServiceTest {
         verify(userRepositoryMock).findAll();
     }
 
+    /**
+     * Should update user.
+     */
     @Test
     public void shouldUpdateUser(){
         mockLogin();
@@ -103,6 +134,9 @@ public class UserServiceTest {
         verifyLogin();
     }
 
+    /**
+     * Should throw duplication exception when user duplicated on update.
+     */
     @Test(expected = DuplicationException.class)
     public void shouldThrowDuplicationExceptionWhenUserDuplicatedOnUpdate(){
         mockLogin();
@@ -117,6 +151,9 @@ public class UserServiceTest {
         }
     }
 
+    /**
+     * Should delete ingredients.
+     */
     @Test
     public void shouldDeleteIngredients(){
         mockLogin();
@@ -132,15 +169,24 @@ public class UserServiceTest {
         verifyLogin();
     }
 
+    /**
+     * Mock login.
+     */
     private void mockLogin(){
         when(userRepositoryMock.findByUserNameAndPassword(USERNAME, PASSWORD)).thenReturn(Optional.of(USER));
         when(userRepositoryMock.findByUserName(USERNAME)).thenReturn(Optional.of(USER));
     }
 
+    /**
+     * Login.
+     */
     private void login(){
         userService.login(USER);
     }
 
+    /**
+     * Verify login.
+     */
     private void verifyLogin(){
         verify(userRepositoryMock).findByUserNameAndPassword(USERNAME, PASSWORD);
         verify(userRepositoryMock).findByUserName(USERNAME);

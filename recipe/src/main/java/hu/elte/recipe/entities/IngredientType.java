@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class IngredientType.
  */
@@ -56,9 +55,6 @@ public class IngredientType {
     this.currency = currency;
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -73,9 +69,6 @@ public class IngredientType {
         && Objects.equals(typeName, that.typeName);
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#hashCode()
-   */
   @Override
   public int hashCode() {
     return Objects.hash(id, typeName, pricePerGramms);

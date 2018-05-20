@@ -4,7 +4,6 @@ import hu.elte.recipe.entities.Currency;
 import hu.elte.recipe.entities.Ingredient;
 import hu.elte.recipe.entities.IngredientUnitType;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class IngredientHttpEntity.
  */
@@ -187,9 +186,6 @@ public class IngredientHttpEntity {
     this.currency = currency;
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString() {
     return "IngredientHttpEntity [id=" + id + ", name=" + name + ", price=" + price + ", quantity="

@@ -1,5 +1,16 @@
 package hu.elte.recipe.rest;
 
+import hu.elte.recipe.entities.Currency;
+import hu.elte.recipe.entities.IngredientUnitType;
+import hu.elte.recipe.entities.httpentities.CurrencyModel;
+import hu.elte.recipe.entities.httpentities.IngredientHttpEntity;
+import hu.elte.recipe.entities.httpentities.IngredientTypeModel;
+import hu.elte.recipe.entities.httpentities.UnitModel;
+import hu.elte.recipe.entities.httpentities.transformers.IngredientTransformer;
+import hu.elte.recipe.services.IngredientService;
+import hu.elte.recipe.services.IngredientTypeService;
+import hu.elte.recipe.services.UserService;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,19 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import hu.elte.recipe.entities.Currency;
-import hu.elte.recipe.entities.Ingredient;
-import hu.elte.recipe.entities.IngredientUnitType;
-import hu.elte.recipe.entities.httpentities.CurrencyModel;
-import hu.elte.recipe.entities.httpentities.IngredientHttpEntity;
-import hu.elte.recipe.entities.httpentities.IngredientTypeModel;
-import hu.elte.recipe.entities.httpentities.UnitModel;
-import hu.elte.recipe.entities.httpentities.transformers.IngredientTransformer;
-import hu.elte.recipe.services.IngredientService;
-import hu.elte.recipe.services.IngredientTypeService;
-import hu.elte.recipe.services.UserService;
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class MyIngredientsController.
  */
@@ -119,15 +117,15 @@ public class MyIngredientsController {
   
   /**
    * Decrease ingredient.
-  *
-  * @param id the id
-  * @return the model and view
-  */
- @RequestMapping(value = "user/decreaseIngredient", method = RequestMethod.GET)
- public ModelAndView decreaseIngredient(@RequestParam("id") Long id) {
-   ingredientService.increaseIngredient(id);
-   return new ModelAndView("redirect:my-ingredients.html");
- }
+   *
+   * @param id the id
+   * @return the model and view
+   */
+  @RequestMapping(value = "user/decreaseIngredient", method = RequestMethod.GET)
+  public ModelAndView decreaseIngredient(@RequestParam("id") Long id) {
+    ingredientService.increaseIngredient(id);
+    return new ModelAndView("redirect:my-ingredients.html");
+  }
 
   /**
    * Save ingredient.

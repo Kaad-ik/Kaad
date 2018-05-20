@@ -24,7 +24,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class User.
  */
@@ -314,9 +313,6 @@ public class User {
     this.cooked = new ArrayList<>();
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#toString()
-   */
   @Override
   public String toString() {
     return "User [id=" + id + ", userName=" + userName + ", fullName=" + fullName + ", email="
@@ -326,24 +322,28 @@ public class User {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass())  {
+      return false;
+    }
     User user = (User) o;
-    return Objects.equals(id, user.id) &&
-            Objects.equals(userName, user.userName) &&
-            Objects.equals(fullName, user.fullName) &&
-            Objects.equals(email, user.email) &&
-            Objects.equals(password, user.password) &&
-            role == user.role &&
-            Objects.equals(money, user.money) &&
-            currency == user.currency &&
-            Objects.equals(cooked, user.cooked) &&
-            Objects.equals(ingredients, user.ingredients);
+    return Objects.equals(id, user.id)
+        && Objects.equals(userName, user.userName)
+        && Objects.equals(fullName, user.fullName)
+        && Objects.equals(email, user.email)
+        && Objects.equals(password, user.password)
+        && role == user.role
+        && Objects.equals(money, user.money)
+        && currency == user.currency
+        && Objects.equals(cooked, user.cooked)
+        && Objects.equals(ingredients, user.ingredients);
   }
 
   @Override
   public int hashCode() {
-
-    return Objects.hash(id, userName, fullName, email, password, role, money, currency, cooked, ingredients);
+    return Objects
+        .hash(id, userName, fullName, email, password, role, money, currency, cooked, ingredients);
   }
 }
