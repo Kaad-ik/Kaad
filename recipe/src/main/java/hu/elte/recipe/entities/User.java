@@ -23,8 +23,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.apache.commons.lang3.ObjectUtils;
-
 /**
  * The Class User.
  */
@@ -92,18 +90,16 @@ public class User {
    * @param food the food
    */
   public void addCooked(Food food) {
-    if (cooked != null) {
-      cooked.add(food);
-    } else {
-      cooked = new ArrayList<>();
-      cooked.add(food);
-    }
+    System.out.println("cook");
+    cooked.add(food);
   }
 
   /**
    * Instantiates a new user.
    */
-  public User() {}
+  public User() {
+    this.cooked = new ArrayList<>();
+  }
 
   /**
    * Gets the id.
@@ -314,5 +310,14 @@ public class User {
     this.userName = entity.getUserName();
     this.password = entity.getPassword();
   }
+
+  @Override
+  public String toString() {
+    return "User [id=" + id + ", userName=" + userName + ", fullName=" + fullName + ", email="
+        + email + ", password=" + password + ", role=" + role + ", money=" + money + ", currency="
+        + currency + ", cooked=" + cooked + ", ingredients=" + ingredients + "]";
+  }
+  
+  
   
 }

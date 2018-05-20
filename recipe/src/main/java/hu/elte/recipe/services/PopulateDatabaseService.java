@@ -1,26 +1,23 @@
 package hu.elte.recipe.services;
 
+import hu.elte.recipe.entities.Currency;
+import hu.elte.recipe.entities.Food;
+import hu.elte.recipe.entities.Ingredient;
+import hu.elte.recipe.entities.IngredientType;
+import hu.elte.recipe.entities.IngredientUnitType;
+import hu.elte.recipe.entities.Role;
+import hu.elte.recipe.entities.User;
+import hu.elte.recipe.repositories.FoodRepository;
+import hu.elte.recipe.repositories.IngredientRepository;
+import hu.elte.recipe.repositories.IngredientTypeRepository;
+import hu.elte.recipe.repositories.UserRepository;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.Optional;
 
-import hu.elte.recipe.entities.Currency;
-import hu.elte.recipe.entities.Role;
-import hu.elte.recipe.entities.User;
-import hu.elte.recipe.repositories.UserRepository;
-
-import hu.elte.recipe.entities.Food;
-import hu.elte.recipe.repositories.FoodRepository; 
-
-import hu.elte.recipe.entities.Ingredient;
-import hu.elte.recipe.repositories.IngredientRepository; 
-import hu.elte.recipe.entities.IngredientUnitType;
-
-import hu.elte.recipe.entities.IngredientType;
-import hu.elte.recipe.repositories.IngredientTypeRepository;
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class PopulateDatabaseService.
  */
@@ -28,89 +25,89 @@ import hu.elte.recipe.repositories.IngredientTypeRepository;
 @Transactional
 public class PopulateDatabaseService {
 
-	/** The user repository. */
-	@Autowired private UserRepository userRepository;
-	
-	/** The food repository. */
-	@Autowired private FoodRepository foodRepository;
-	
-	/** The ingredient type repository. */
-	@Autowired private IngredientTypeRepository ingredientTypeRepository;
-	
-	/** The ingredient repository. */
-	@Autowired private IngredientRepository ingredientRepository;
+  /** The user repository. */
+  @Autowired private UserRepository userRepository;
 
-	/** The i T. */
-	private IngredientType iT = new IngredientType();
-	
-	/** The i T 1. */
-	private IngredientType iT1 = new IngredientType();
-	
-	/** The i T 2. */
-	private IngredientType iT2 = new IngredientType();
-	
-	/** The i T 3. */
-	private IngredientType iT3 = new IngredientType();
-	
-	/** The i T 4. */
-	private IngredientType iT4 = new IngredientType();
-	
-	/** The i T 5. */
-	private IngredientType iT5 = new IngredientType();
-	
-	/** The i T 6. */
-	private IngredientType iT6 = new IngredientType();
-	
-	/** The i T 7. */
-	private IngredientType iT7 = new IngredientType();
-	
-	/** The i T 8. */
-	private IngredientType iT8 = new IngredientType();
-	
-	/** The i T 9. */
-	private IngredientType iT9 = new IngredientType();
-	
-	/** The i T 10. */
-	private IngredientType iT10 = new IngredientType();
-	
-	/** The i T 11. */
-	private IngredientType iT11 = new IngredientType();
-	
-	/** The i T 12. */
-	private IngredientType iT12 = new IngredientType();
-	
-	/** The i T 13. */
-	private IngredientType iT13 = new IngredientType();
-	
-	/** The i T 14. */
-	private IngredientType iT14 = new IngredientType();
-	
-	/** The i T 15. */
-	private IngredientType iT15 = new IngredientType();
-	
-	/** The i T 16. */
-	private IngredientType iT16 = new IngredientType();
-	
-	/** The i T 17. */
-	private IngredientType iT17 = new IngredientType();
-	
-	/** The i T 18. */
-	private IngredientType iT18 = new IngredientType();
-	
-	/** The i T 19. */
-	private IngredientType iT19 = new IngredientType();
-	
-	/** The i T 20. */
-	private IngredientType iT20 = new IngredientType();
-	
-	/** The i T 21. */
-	private IngredientType iT21 = new IngredientType();
-	
-	/** The i T 22. */
-	private IngredientType iT22 = new IngredientType();
-	
-	/** The i T 23. */
-	private IngredientType iT23 = new IngredientType();
+  /** The food repository. */
+  @Autowired private FoodRepository foodRepository;
+
+  /** The ingredient type repository. */
+  @Autowired private IngredientTypeRepository ingredientTypeRepository;
+
+  /** The ingredient repository. */
+  @Autowired private IngredientRepository ingredientRepository;
+
+  /** The i T. */
+  private IngredientType iT = new IngredientType();
+
+  /** The i T 1. */
+  private IngredientType iT1 = new IngredientType();
+
+  /** The i T 2. */
+  private IngredientType iT2 = new IngredientType();
+
+  /** The i T 3. */
+  private IngredientType iT3 = new IngredientType();
+
+  /** The i T 4. */
+  private IngredientType iT4 = new IngredientType();
+
+  /** The i T 5. */
+  private IngredientType iT5 = new IngredientType();
+
+  /** The i T 6. */
+  private IngredientType iT6 = new IngredientType();
+
+  /** The i T 7. */
+  private IngredientType iT7 = new IngredientType();
+
+  /** The i T 8. */
+  private IngredientType iT8 = new IngredientType();
+
+  /** The i T 9. */
+  private IngredientType iT9 = new IngredientType();
+
+  /** The i T 10. */
+  private IngredientType iT10 = new IngredientType();
+
+  /** The i T 11. */
+  private IngredientType iT11 = new IngredientType();
+
+  /** The i T 12. */
+  private IngredientType iT12 = new IngredientType();
+
+  /** The i T 13. */
+  private IngredientType iT13 = new IngredientType();
+
+  /** The i T 14. */
+  private IngredientType iT14 = new IngredientType();
+
+  /** The i T 15. */
+  private IngredientType iT15 = new IngredientType();
+
+  /** The i T 16. */
+  private IngredientType iT16 = new IngredientType();
+
+  /** The i T 17. */
+  private IngredientType iT17 = new IngredientType();
+
+  /** The i T 18. */
+  private IngredientType iT18 = new IngredientType();
+
+  /** The i T 19. */
+  private IngredientType iT19 = new IngredientType();
+
+  /** The i T 20. */
+  private IngredientType iT20 = new IngredientType();
+
+  /** The i T 21. */
+  private IngredientType iT21 = new IngredientType();
+
+  /** The i T 22. */
+  private IngredientType iT22 = new IngredientType();
+
+  /** The i T 23. */
+  private IngredientType iT23 = new IngredientType();
 	
 	/** The i T 24. */
 	private IngredientType iT24 = new IngredientType();
@@ -325,7 +322,7 @@ public class PopulateDatabaseService {
 		
 		Food food = new Food();
 		food.setName("Gulyásleves");
-		food.addIngredient(saveIngredient(iT,  1, IngredientUnitType.DB)); //TODO: hozzávalók hozzáadása a kajákhoz
+		food.addIngredient(saveIngredient(iT,  1, IngredientUnitType.DB));
 		food.addIngredient(saveIngredient(iT1,  40, IngredientUnitType.DKG));
 		food.addIngredient(saveIngredient(iT3,  10, IngredientUnitType.DKG));
 		food.addIngredient(saveIngredient(iT4,  1, IngredientUnitType.EK));
@@ -433,7 +430,7 @@ public class PopulateDatabaseService {
 		user.addCooked(food.get());
 		food = foodRepository.findByName("Fűszeres édesburgonyachips");
 		user.addCooked(food.get());
-		user.addIngredient(saveIngredient(iT1, 1, IngredientUnitType.DB)); //TODO: hozzávalók hozzáadása a userekhez
+		user.addIngredient(saveIngredient(iT1, 1, IngredientUnitType.DB));
 		user.addIngredient(saveIngredient(iT18,  30, IngredientUnitType.ML));
 		user.addIngredient(saveIngredient(iT30,  1, IngredientUnitType.DB));
 		userRepository.save(user);

@@ -1,5 +1,7 @@
 package hu.elte.recipe.services;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
@@ -15,12 +17,11 @@ import hu.elte.recipe.entities.httpentities.UserHttpEntity;
 import hu.elte.recipe.exceptions.UserNotValidException;
 import hu.elte.recipe.exceptions.DuplicationException;
 
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class UserService.
  */
 @Service
+@Transactional
 public class UserService {
 
     /** The Constant USERNAME_DUPLICATED_MESSAGE. */
@@ -229,15 +230,19 @@ public class UserService {
         userRepository.save(actualUser);
     }
     
-    /**
-     * Delete ingredient.
-     *
-     * @param id the id
-     */
+  /**
+   * Delete ingredient.
+   *
+   * @param id the id
+   */
   public void deleteIngredient(Long id) {
+    System.out.println("ID IN DELETE: " + id);
     Ingredient ingredient = ingredientRepository.findOne(id);
-    actualUser.deleteIngredient(ingredient);
-    	userRepository.save(actualUser);
-    	ingredientRepository.delete(ingredient);
-    }
+    System.out.println(ingredient.toString());
+    System.out.println(actualUser.toString());
+    actualUser.getIngredients().remove(ingredient);
+    System.out.println(actualUser.toString());
+    ingredientRepository.delete(ingredient);
+    userRepository.save(actualUser);
+  }
 }

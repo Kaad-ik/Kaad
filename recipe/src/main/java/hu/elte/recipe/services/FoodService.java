@@ -22,11 +22,14 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class FoodService.
  */
 @Service
+@Transactional
 public class FoodService {
 	
     /** The food repository. */

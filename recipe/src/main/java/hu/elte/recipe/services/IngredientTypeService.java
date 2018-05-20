@@ -11,11 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class IngredientTypeService.
  */
 @Service
+@Transactional
 public class IngredientTypeService {
     
     /** The ingredient type repository. */

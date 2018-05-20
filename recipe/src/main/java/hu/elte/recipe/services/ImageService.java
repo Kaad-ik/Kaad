@@ -10,11 +10,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
+import javax.transaction.Transactional;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class ImageService.
  */
 @Service
+@Transactional
 public class ImageService {
 
     /** The SFTP connection. */

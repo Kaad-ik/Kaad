@@ -27,55 +27,54 @@ import hu.elte.recipe.services.IngredientService;
 import hu.elte.recipe.services.IngredientTypeService;
 import hu.elte.recipe.services.UserService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MyIngredientsController.
  */
 @RestController
 public class MyIngredientsController {
 
-	/** The user service. */
-	@Autowired private UserService userService;
-	
-	/** The ingredient service. */
-	@Autowired private IngredientService ingredientService;
-	
-	/** The ingredient transformer. */
-	@Autowired private IngredientTransformer ingredientTransformer;
-	
-	/** The ingredient type service. */
-	@Autowired private IngredientTypeService ingredientTypeService;
+  /** The user service. */
+  @Autowired private UserService userService;
 
-	/**
-	 * Gets the currency model.
-	 *
-	 * @return the currency model
-	 */
-	@ModelAttribute("currencyModel")
-	public CurrencyModel getCurrencyModel() {
-		return new CurrencyModel(Arrays.asList(Currency.values()));
-	}
+  /** The ingredient service. */
+  @Autowired private IngredientService ingredientService;
 
-	/**
-	 * Gets the unit model.
-	 *
-	 * @return the unit model
-	 */
-	@ModelAttribute("unitModel")
-	public UnitModel getUnitModel() {
-		return new UnitModel(Arrays.asList(IngredientUnitType.values()));
-	}
+  /** The ingredient transformer. */
+  @Autowired private IngredientTransformer ingredientTransformer;
 
-	/**
-	 * Gets the ingredient type model.
-	 *
-	 * @return the ingredient type model
-	 */
-	@ModelAttribute("ingredientTypeModel")
-	public IngredientTypeModel getIngredientTypeModel() {
-		return new IngredientTypeModel(ingredientTypeService.getAllIngredientTypeName());
-	}
-	
+  /** The ingredient type service. */
+  @Autowired private IngredientTypeService ingredientTypeService;
+
+  /**
+   * Gets the currency model.
+   *
+   * @return the currency model
+   */
+  @ModelAttribute("currencyModel")
+  public CurrencyModel getCurrencyModel() {
+    return new CurrencyModel(Arrays.asList(Currency.values()));
+  }
+
+  /**
+   * Gets the unit model.
+   *
+   * @return the unit model
+   */
+  @ModelAttribute("unitModel")
+  public UnitModel getUnitModel() {
+    return new UnitModel(Arrays.asList(IngredientUnitType.values()));
+  }
+
+  /**
+   * Gets the ingredient type model.
+   *
+   * @return the ingredient type model
+   */
+  @ModelAttribute("ingredientTypeModel")
+  public IngredientTypeModel getIngredientTypeModel() {
+    return new IngredientTypeModel(ingredientTypeService.getAllIngredientTypeName());
+  }
+
   /**
    * Show my ingredients.
    *
@@ -100,10 +99,15 @@ public class MyIngredientsController {
    * @return the model and view
    */
   @RequestMapping(value = "user/deleteIngredient", method = RequestMethod.GET)
-  public ModelAndView removeFood(@RequestParam("id") Long id) {
-    System.out.println(id);
+  public ModelAndView removeIngredient(@RequestParam("id") Long id) {
     userService.deleteIngredient(id);
-    return new ModelAndView("redirect:details.html");
+    return new ModelAndView("redirect:my-ingredients.html");
+  }
+  
+  @RequestMapping(value = "user/increaseIngredient", method = RequestMethod.GET)
+  public ModelAndView increaseIngredient(@RequestParam("id") Long id) {
+    ingredientService.increaseIngredient(id);
+    return new ModelAndView("redirect:my-ingredients.html");
   }
 
   /**
