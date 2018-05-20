@@ -2,6 +2,7 @@ package hu.elte.recipe.entities.httpentities;
 
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class IngredientTypeModel.
  */

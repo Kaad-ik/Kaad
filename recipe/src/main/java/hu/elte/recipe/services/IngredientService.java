@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class IngredientService.
  */
@@ -54,6 +55,11 @@ public class IngredientService {
     return addIngredient(new Ingredient(type, null, entity.getQuantity(), entity.getUnit()));
   }
   
+  /**
+   * Increase ingredient.
+   *
+   * @param id the id
+   */
   public void increaseIngredient(Long id) {
     Ingredient ing = ingredientRepository.findOne(id);
     System.out.println(ing.toString());

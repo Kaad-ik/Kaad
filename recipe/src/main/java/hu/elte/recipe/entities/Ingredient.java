@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Ingredient.
  */
@@ -173,6 +174,9 @@ public class Ingredient {
     return null;
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -189,11 +193,17 @@ public class Ingredient {
         && unit == that.unit;
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Object#hashCode()
+   */
   @Override
   public int hashCode() {
     return Objects.hash(id, type, owner, quantity, unit);
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
   @Override
   public String toString() {
     return "Ingredient [id=" + id + ", type=" + type + ", owner=" + owner + ", quantity=" + quantity

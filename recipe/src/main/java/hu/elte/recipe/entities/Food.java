@@ -21,6 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Food.
  */
@@ -212,6 +213,9 @@ public class Food {
     this.ingredients.add(ingredient);
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Object#hashCode()
+   */
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -223,6 +227,9 @@ public class Food {
     return result;
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
   @Override
   public boolean equals(Object obj) {
     if (this == obj)
@@ -255,6 +262,9 @@ public class Food {
     return true;
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
   @Override
   public String toString() {
     return "Food [id=" + id + ", name=" + name + ", imgUrl=" + imgUrl + ", recipe=" + recipe

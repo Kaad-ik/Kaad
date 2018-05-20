@@ -112,6 +112,7 @@ public class FoodServiceTest {
     @Mock
 	  private UserService userServiceMock;
 
+    /** The ingredient service mock. */
     @Mock
 	  private IngredientService ingredientServiceMock;
     
@@ -221,6 +222,12 @@ public class FoodServiceTest {
         return foodHttpEntity;
 	}
 
+	/**
+	 * To http entity.
+	 *
+	 * @param ingredients the ingredients
+	 * @return the sets the
+	 */
 	private static Set<IngredientHttpEntity> toHttpEntity(List<Ingredient> ingredients){
     	return ingredients.stream().map(IngredientHttpEntity::new).collect(Collectors.toSet());
 	}

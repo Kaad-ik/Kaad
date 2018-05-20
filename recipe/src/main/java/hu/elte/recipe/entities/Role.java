@@ -1,9 +1,13 @@
 package hu.elte.recipe.entities;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Enum Role.
  */
 public enum Role {
     
-   ADMIN, USER, GUEST
+   /** The admin. */
+   ADMIN, /** The user. */
+ USER, /** The guest. */
+ GUEST
 }

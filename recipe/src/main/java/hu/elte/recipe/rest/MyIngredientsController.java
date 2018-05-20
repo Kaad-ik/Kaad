@@ -27,6 +27,7 @@ import hu.elte.recipe.services.IngredientService;
 import hu.elte.recipe.services.IngredientTypeService;
 import hu.elte.recipe.services.UserService;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class MyIngredientsController.
  */
@@ -104,6 +105,12 @@ public class MyIngredientsController {
     return new ModelAndView("redirect:my-ingredients.html");
   }
   
+  /**
+   * Increase ingredient.
+   *
+   * @param id the id
+   * @return the model and view
+   */
   @RequestMapping(value = "user/increaseIngredient", method = RequestMethod.GET)
   public ModelAndView increaseIngredient(@RequestParam("id") Long id) {
     ingredientService.increaseIngredient(id);

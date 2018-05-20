@@ -4,6 +4,7 @@ import hu.elte.recipe.entities.IngredientUnitType;
 
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class UnitModel.
  */

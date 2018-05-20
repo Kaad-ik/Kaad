@@ -23,6 +23,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class User.
  */
@@ -311,6 +312,9 @@ public class User {
     this.password = entity.getPassword();
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
   @Override
   public String toString() {
     return "User [id=" + id + ", userName=" + userName + ", fullName=" + fullName + ", email="

@@ -17,6 +17,7 @@ import hu.elte.recipe.entities.httpentities.UserHttpEntity;
 import hu.elte.recipe.exceptions.UserNotValidException;
 import hu.elte.recipe.exceptions.DuplicationException;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class UserService.
  */
