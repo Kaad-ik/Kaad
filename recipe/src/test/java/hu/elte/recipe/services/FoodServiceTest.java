@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import hu.elte.recipe.entities.Ingredient;
 import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
@@ -14,10 +15,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import hu.elte.recipe.entities.Food;
-import hu.elte.recipe.entities.Ingredient;
 import hu.elte.recipe.entities.IngredientType;
 import static hu.elte.recipe.entities.IngredientUnitType.DB;
 import static org.mockito.Mockito.*;
@@ -26,10 +25,7 @@ import hu.elte.recipe.entities.User;
 import hu.elte.recipe.entities.httpentities.FoodHttpEntity;
 import hu.elte.recipe.entities.httpentities.IngredientHttpEntity;
 import hu.elte.recipe.entities.httpentities.transformers.FoodTransformer;
-import hu.elte.recipe.exceptions.DuplicationException;
-import hu.elte.recipe.exceptions.NotFoundException;
 import hu.elte.recipe.repositories.FoodRepository;
-import org.springframework.dao.DuplicateKeyException;
 
 // TODO: Auto-generated Javadoc
 /**

@@ -34,6 +34,13 @@ public class IngredientServiceTest {
     /** The Constant REQUEST_ENTITY. */
     private static final IngredientHttpEntity REQUEST_ENTITY =
             new IngredientHttpEntity("cukor", 4, IngredientUnitType.CSIPET);
+    private static final User USER = new User();
+    private static final Ingredient INGREDIENT = new Ingredient(TYPE_1,USER, 4, IngredientUnitType.CSIPET);
+
+    static {
+        USER.setUserName("usename");
+        USER.addIngredient(INGREDIENT);
+    }
 
     /** The mocks collector. */
     private final MocksCollector mocksCollector = new MocksCollector();
@@ -45,6 +52,9 @@ public class IngredientServiceTest {
     /** The ingredient type service mock. */
     @Mock
     private IngredientTypeService ingredientTypeServiceMock;
+
+    @Mock
+    private UserService userServiceMock;
 
     /** The ingredient service. */
     @InjectMocks
@@ -72,15 +82,18 @@ public class IngredientServiceTest {
     /**
      * Should add ingredient by http entity.
      */
-/*    @Test
+    @Test
     public void shouldAddIngredientByHttpEntity() {
-       Ingredient expected = new Ingredient(TYPE_1,null, 4, IngredientUnitType.CSIPET);
        when(ingredientTypeServiceMock.getByName(REQUEST_ENTITY.getName())).thenReturn(Optional.of(TYPE_1));
-       when(ingredientRepositoryMock.save(expected)).thenReturn(expected);
+       when(userServiceMock.getActualUser()).thenReturn(USER);
+       when(userServiceMock.updateUser(USER)).thenReturn(USER);
+       when(ingredientRepositoryMock.save(INGREDIENT)).thenReturn(INGREDIENT);
        Ingredient actual = ingredientService.addIngredientByHttpEntity(REQUEST_ENTITY);
-       assertEquals(expected, actual);
+       assertEquals(INGREDIENT, actual);
        verify(ingredientTypeServiceMock).getByName(REQUEST_ENTITY.getName());
-       verify(ingredientRepositoryMock).save(expected);
+       verify(userServiceMock).getActualUser();
+       verify(userServiceMock).updateUser(USER);
+       verify(ingredientRepositoryMock).save(INGREDIENT);
     }
-*/
+
 }

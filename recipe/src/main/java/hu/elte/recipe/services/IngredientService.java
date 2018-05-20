@@ -54,7 +54,7 @@ public class IngredientService {
     return addIngredient(ingredient);
     //return addIngredient(new Ingredient(type, null, entity.getQuantity(), entity.getUnit()));
   }
-  
+
   /**
    * Increase ingredient.
    *

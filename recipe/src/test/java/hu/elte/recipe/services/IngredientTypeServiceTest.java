@@ -1,7 +1,6 @@
 package hu.elte.recipe.services;
 
 import hu.elte.recipe.entities.Currency;
-import hu.elte.recipe.entities.Ingredient;
 import hu.elte.recipe.entities.IngredientType;
 import hu.elte.recipe.exceptions.DuplicationException;
 import hu.elte.recipe.repositories.IngredientTypeRepository;

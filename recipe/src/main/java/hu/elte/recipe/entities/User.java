@@ -8,6 +8,7 @@ import hu.elte.recipe.entities.httpentities.UserHttpEntity;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
@@ -322,7 +323,27 @@ public class User {
         + email + ", password=" + password + ", role=" + role + ", money=" + money + ", currency="
         + currency + ", cooked=" + cooked + ", ingredients=" + ingredients + "]";
   }
-  
-  
-  
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    User user = (User) o;
+    return Objects.equals(id, user.id) &&
+            Objects.equals(userName, user.userName) &&
+            Objects.equals(fullName, user.fullName) &&
+            Objects.equals(email, user.email) &&
+            Objects.equals(password, user.password) &&
+            role == user.role &&
+            Objects.equals(money, user.money) &&
+            currency == user.currency &&
+            Objects.equals(cooked, user.cooked) &&
+            Objects.equals(ingredients, user.ingredients);
+  }
+
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(id, userName, fullName, email, password, role, money, currency, cooked, ingredients);
+  }
 }
